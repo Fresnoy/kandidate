@@ -1,7 +1,7 @@
 # -*- tab-width: 2 -*-
 "use strict"
 
-angular.module('candidature.controllers', ['memoire.services', 'candidature.services'])
+angular.module('candidature.controllers', ['candidature.services'])
 
 
 #

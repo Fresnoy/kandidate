@@ -1,4 +1,4 @@
-Kartel
+Kandidate
 ======
 
-LeFresnoy's frontend to cultural data.
+LeFresnoy's frontend to form application.

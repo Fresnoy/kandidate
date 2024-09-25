@@ -19,19 +19,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 # https://github.com/CommonsDev/map/blob/master/scripts/app.js
 
-angular.module('candidature', ['candidature.application'])
-angular.module('memoire', ['memoire.controllers', 'memoire.directives'])
-
-angular.module('kartel',
-              [
-                  'memoire', 'candidature', 'ui.router',
+angular.module('candidature', ['candidature.application',
+                  'ui.router',
                   'restangular', 'angular-jwt',
                   'ngAnimate', 'chieffancypants.loadingBar', 'ui.bootstrap', 'ngMessages',
                   'ngSanitize', 'markdown',
                   'iso-3166-country-codes', 'ngFileUpload', 'ngPlacesAutocomplete',
                   'angular-clipboard',
-                  'angular-google-analytics',
-              ])
+                  'angular-google-analytics',])
 
 # CORS
 .config(['$httpProvider', ($httpProvider) ->
@@ -80,7 +75,7 @@ angular.module('kartel',
         # $state.go('candidature.login');
 
       ],
-      whiteListedDomains: ['api.lefresnoy.net', 'localhost', 'vimeo.com']
+      whiteListedDomains: ['lefresnoy.net', 'localhost', 'vimeo.com']
 
     })
 
@@ -266,145 +261,6 @@ angular.module('kartel',
 ])
 
 
-
-# URI config
-.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', ($locationProvider,
-                                                                      $stateProvider,
-                                                                      $urlRouterProvider) ->
-
-        $locationProvider.html5Mode(config.useHtml5Mode)
-        $urlRouterProvider.otherwise("/school")
-
-        # SCHOOL
-        $stateProvider.state('school',
-            url: '/school',
-            views:
-              'main_view':
-                templateUrl: 'kartel.html'
-                controller: 'NavController'
-              'main_view.main_content_view':
-                  templateUrl: 'views/school.html'
-                  controller: 'SchoolController'
-        )
-
-        $stateProvider.state('school.promotion',
-              url: '/promotion/:id'
-              views:
-                'content_school_view':
-                    templateUrl: 'views/promotion.html'
-                    controller: 'PromotionController'
-        )
-
-        $stateProvider.state('school.student',
-              url: '/student/:id'
-              views:
-                'content_school_view':
-                    templateUrl: 'views/student.html'
-                    controller: 'StudentController'
-
-        )
-
-        # ARTIST
-        $stateProvider.state('artist',
-                url: '/artist?letter'
-                views:
-                  'main_view':
-                      templateUrl: 'kartel.html'
-                      controller: 'NavController'
-                  'main_view.main_content_view':
-                    templateUrl: 'views/artists.html'
-                    controller: 'ArtistListingController'
-        )
-
-        $stateProvider.state('artist.detail',
-                url: '/:id',
-                views:
-                  'main_content_view':
-                    templateUrl: 'views/artist.html'
-                    controller: 'ArtistController'
-        )
-
-        # ARTWORK
-
-        $stateProvider.state('genre',
-                url: '/artwork/?genre'
-                views:
-                  'main_view':
-                    templateUrl: 'kartel.html'
-                  'main_view.main_content_view':
-                      templateUrl: 'views/artworks.html'
-                      controller: 'ArtworkGenreListingController'
-        )
-
-        $stateProvider.state('artwork',
-                url: '/artwork?letter&offset'
-                views:
-                  'main_view':
-                      templateUrl: 'kartel.html'
-                      controller: 'NavController'
-                  'main_view.main_content_view':
-                      templateUrl: 'views/artworks.html'
-                      controller: 'ArtworkListingController'
-        )
-
-        $stateProvider.state('artwork-detail',
-                url: '/artwork/:id'
-                views:
-                  'main_view':
-                    templateUrl: 'kartel.html'
-                    controller: 'NavController'
-                  'main_view.main_content_view':
-                      templateUrl: 'views/artwork.html'
-                      controller: 'ArtworkController'
-        )
-
-        # - Candidatures LISTS
-
-        $stateProvider.state('candidatures',
-                url: '/candidatures'
-                views:
-                  'main_view':
-                    templateUrl: 'kartel.html'
-                    controller: 'NavController'
-                  'main_view.main_content_view':
-                    templateUrl: 'views/candidatures.html'
-        )
-
-        $stateProvider.state('candidatures.list',
-                url: '/list?orderby&sortby&asc'
-                params:
-                  orderby: null
-                  sortby: null
-                  asc: null
-                views:
-                  'candidatures_main_view':
-                    templateUrl: 'views/candidatures/liste.html'
-                    controller: 'CandidaturesController'
-        )
-
-        $stateProvider.state('candidatures.list.candidat',
-                url: '/:id'
-                views:
-                  'candidat_view':
-                    templateUrl: 'views/candidat.html'
-                    controller: 'CandidatController'
-        )
-
-        # - Candidatures Configuration
-        $stateProvider.state('candidatures.configuration',
-                url: '/configuration'
-                views:
-                  'candidatures_main_view':
-                    templateUrl: 'views/candidatures/configuration.html'
-                    controller: 'CandidaturesConfigurationController'
-        )
-
-
-
-
-
-])
-
 .run(['$rootScope', '$state', '$stateParams', ($rootScope, $state, $stateParams) ->
         $rootScope.homeStateName = 'apps' # Should be moved to loginServiceProvider
 
@@ -431,20 +287,6 @@ angular.module('kartel',
    # codes
 ])
 
-
-
-
-.run(['AmeRestangular', (AmeRestangular) ->
-  AmeRestangular.setErrorInterceptor((response) ->
-    if (response.status == 401)
-        console.log("Login required... ")
-    else if (response.status == 404)
-        console.log("Resource not available...")
-    else
-        console.log("Ame service not available : " + response.status )
-    return response # stop the promise chain
-  )
-])
 
 # Ugly Fix for autofill on forms
 .directive('formAutofillFix', ->

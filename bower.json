@@ -1,15 +1,15 @@
 {
-  "name": "kartel",
+  "name": "kandidate",
   "version": "0.0.2",
-  "homepage": "https://github.com/Fresnoy/kartel",
+  "homepage": "https://github.com/Fresnoy/kandidate",
   "authors": [
     "Fuzzy Frequency <contact@fuzzyfrequency.com>"
   ],
-  "description": "Kartel",
+  "description": "Kandidate",
   "main": "index.html",
   "keywords": [
     "frontend",
-    "culture"
+    "application"
   ],
   "license": "AGPL v3",
   "private": true,

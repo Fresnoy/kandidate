@@ -1,6 +1,6 @@
 # -*- tab-width: 2 -*-
 "use strict"
-angular.module('candidature.application', ['candidature.controllers',
+angular.module('candidature.application', ['candidature.controllers', 'candidature.directives',
             'ui.router', 'timer'
 ])
 
@@ -28,9 +28,14 @@ angular.module('candidature.application', ['candidature.controllers',
 .config(['$locationProvider', '$stateProvider', '$urlRouterProvider', ($locationProvider,
                                                                       $stateProvider,
                                                                       $urlRouterProvider) ->
+      $locationProvider.html5Mode(config.useHtml5Mode)
+      $urlRouterProvider.otherwise("")
+
+
+
       # - CANDIDATURE Root
       $stateProvider.state('candidature',
-              url: '/candidature'
+              url: ''
               views:
                 'main_view':
                   templateUrl: 'views/candidature/index.html',
