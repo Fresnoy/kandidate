@@ -861,7 +861,8 @@ angular.module('candidature.controllers', ['candidature.services'])
       $scope.french_art_cursus = ""
       $scope.justificatif_placeholders = {en:"Document title",fr:"Titre du justificatif"}
 
-
+      $scope.findDescription = (item) ->  
+        return item.description == 'Justificatif Master'
       #patch Medium
       $scope.uploadFile = (data, model) ->
 
