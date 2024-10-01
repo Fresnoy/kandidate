@@ -26,27 +26,7 @@
       
       <form name="form1" ng-submit="form1.$valid && submit()" class="css-form" novalidate enctype="multipart/form-data">
 
-          <!--
-            
-         FIRST NAME
-
-          -->
-
-        <div class="field">
-           <input id="first-name" type="text"  ng-model="user.first_name" ng-model-options='{ debounce: 1000 }'
-                  ng-change="user.patch({'first_name': user.first_name, 'profile':{'id': user.profile.id}})" name="uFirstName" required />
-           <div ng-show="form1.uName.$touched && form1.uFirstName.$invalid" ng-messages="form1.uFirstName.$error" class="help-block error">
-              <div ng-message="required">
-                 <span class="fr">Obligatoire</span>
-                 <span class="en">Required</span>
-              </div>
-           </div>
-           <label for="first-name">
-           <span class="field-state required"></span>
-           <span class="fr">Prénom (état civil tel qu’indiqué sur la carte d’identité)</span>
-           <span class="en">Given name (as indicated on your passport/ID card)</span>
-           </label>
-        </div>
+        
          <!--
             
          LAST NAME
@@ -69,6 +49,28 @@
             <span class="en">Surname (as indicated on your passport/ID card)</span>
             </label>
          </div>
+
+           <!--
+            
+         FIRST NAME
+
+          -->
+
+        <div class="field">
+         <input id="first-name" type="text"  ng-model="user.first_name" ng-model-options='{ debounce: 1000 }'
+                ng-change="user.patch({'first_name': user.first_name, 'profile':{'id': user.profile.id}})" name="uFirstName" required />
+         <div ng-show="form1.uName.$touched && form1.uFirstName.$invalid" ng-messages="form1.uFirstName.$error" class="help-block error">
+            <div ng-message="required">
+               <span class="fr">Obligatoire</span>
+               <span class="en">Required</span>
+            </div>
+         </div>
+         <label for="first-name">
+         <span class="field-state required"></span>
+         <span class="fr">Prénom (état civil tel qu’indiqué sur la carte d’identité)</span>
+         <span class="en">Given name (as indicated on your passport/ID card)</span>
+         </label>
+      </div>
 
           <!--
             
