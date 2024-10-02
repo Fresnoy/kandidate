@@ -272,17 +272,17 @@ angular.module('candidature', ['candidature.application',
 
 ])
 
-
-.config(['AnalyticsProvider', (AnalyticsProvider) ->
-   # Add configuration code as desired
-   AnalyticsProvider.setAccount('UA-16448202-2')
-   AnalyticsProvider.trackUrlParams(true);
-])
-
-.run(['Analytics', '$rootScope', (Analytics, $rootScope) ->
+.run(['$rootScope', 'AnalyticsService', ($rootScope, AnalyticsService) ->
 
     $rootScope.$on("$locationChangeStart", (event, next, current) ->
-        Analytics.trackPage(Analytics.getUrl());
+        console.log(config)
+        param = 
+          idsite:config.analytics_site_id
+          rec:1
+          url:current.replace("/#/", '/')
+
+        AnalyticsService.one().customGET("matomo.php", param, "")
+        
     );
    # codes
 ])

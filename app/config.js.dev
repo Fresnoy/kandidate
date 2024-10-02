@@ -4,5 +4,8 @@ config = {
     api_url: "",
     rest_uri_v2: "",
     rest_uri: ""
+
+    analytics_uri: "",
+    analytics_site_id: 0
 }
 

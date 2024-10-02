@@ -127,3 +127,9 @@ angular.module('candidature.services', ['restangular'])
                 RestangularConfigurer.setBaseUrl(config.api_url);
         ).service('graphql')
 )
+
+.factory('AnalyticsService', (Restangular) ->
+        return Restangular.withConfig((RestangularConfigurer) ->
+            RestangularConfigurer.setBaseUrl(config.analytics_uri)
+        ).service('')
+)
