@@ -25,8 +25,7 @@ angular.module('candidature', ['candidature.application',
                   'ngAnimate', 'chieffancypants.loadingBar', 'ui.bootstrap', 'ngMessages',
                   'ngSanitize', 'markdown',
                   'iso-3166-country-codes', 'ngFileUpload', 'ngPlacesAutocomplete',
-                  'angular-clipboard',
-                  'angular-google-analytics',])
+                  'angular-clipboard',])
 
 # CORS
 .config(['$httpProvider', ($httpProvider) ->
