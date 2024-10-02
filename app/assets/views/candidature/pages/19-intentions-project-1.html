@@ -197,8 +197,6 @@
       </label>
    </div>
 
-
-
    <div class="field">
 
      <div id="considered-referencies-project-1"
@@ -253,6 +251,20 @@
             <span class="en">ARTISTIC REFERENCES (20 LINES, PDF FORMAT)</span>
       </label>
    </div>
+   </form>
+   <div ng-show="findDuplicatesValues([candidature.considered_project_1, 
+                                         candidature.considered_project_2, 
+                                         candidature.artistic_referencies_project_1, 
+                                         candidature.artistic_referencies_project_2])";>
+      <div class="alert-warning" style="padding:20px;" >
+         <p class="fr">Il semble que certain des documents projets et références artistiques soient les mêmes, hors ils doivent être différents 
+            (projets différents pour les deux années et références artistiques distinctes à chaques projet)</p>
+         <p class="en">It seems that some of the project documents and artistic references are the same, but they must be different 
+            (different projects for the two years and distinct artistic references for each project)</p>
+      </div>
+   </div>
+
+
    <div class="navigation">
       <a class="btn prev" ui-sref="candidature.motivations"><span class="fr">Retour</span><span class="en">Back</span></a>
       <a class="btn next" ui-sref="candidature.intentions-project-2"><span class="fr">Continuer</span><span class="en">Continue</span></a>
