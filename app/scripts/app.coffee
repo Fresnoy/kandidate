@@ -274,13 +274,15 @@ angular.module('candidature', ['candidature.application',
 .run(['$rootScope', 'AnalyticsService', ($rootScope, AnalyticsService) ->
 
     $rootScope.$on("$locationChangeStart", (event, next, current) ->
-        console.log(config)
+
         param = 
           idsite:config.analytics_site_id
           rec:1
-          url:current.replace("/#/", '/')
+          url:encodeURIComponent(current.replace("/#/", '/'))
 
-        AnalyticsService.one().customGET("matomo.php", param, "")
+        console.log(param)
+
+        AnalyticsService.one().customGET("matomo.php", param)
         
     );
    # codes
