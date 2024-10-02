@@ -278,7 +278,7 @@ angular.module('candidature', ['candidature.application',
         param = 
           idsite:config.analytics_site_id
           rec:1
-          url:encodeURIComponent(current.replace("/#/", '/'))
+          url:current.replace("/#/", '/')
 
         console.log(param)
 
