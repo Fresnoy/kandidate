@@ -1,0 +1,91 @@
+<div class="help-pane" ng-show='display_help' ng-init="show_help(false)">
+   <span class="close" ng-click="show_help(false)">x</span>
+   <h1><class class="fr">Aide</class><class class="en">Help</class></h1>
+   <div class="fr">
+   </div>
+   <div class="en">
+   </div>
+</div>
+
+
+<div class="">
+   <h1>
+      <span class="fr">Duo</span>
+      <span class="en">Duo</span>
+   </h1>
+   <form name="form" ng-submit="form.$valid && submit()" class="css-form" novalidate enctype="multipart/form-data">
+
+     <h3 class='fr'>Candidature en duo</h3>
+     <h3 class='en'>Applying as a duo </h3>
+     <p>
+       <span class='fr'>
+         Il est possible de candidater en duo, chacun·e des membres du duo doit s’inscrire, il y a donc deux dossiers administratifs
+         distincts présentant le même dossier artistique.<br/>
+         Une candidature en duo n’est recevable qu’à la condition expresse que les membres du duo participent à l’intégralité
+         des propositions pédagogiques (conjointement et non en alternance).<br/>
+         Chaque candidat·e doit s'inscrire individuellement et mentionner le nom et le prénom du binôme.
+       </span>
+         <span class='en'>You have the option to apply as a duo. This means both members must enroll, 
+            resulting in two separate administrative files for the same artistic dossier.<br/>
+            A dual application is only accepted if both members fully participate in the pedagogical propositions jointly, 
+            not alternately. <br/>
+            Each member must register individually and provide the name and first name of the other member.
+         </span>
+           <div class="field">
+              <input
+                 type="checkbox"
+                 id="binomial-application"
+                 ng-model="candidature.binomial_application"
+                 name="cBinome"
+                 ng-change="candidature.patch({binomial_application: candidature.binomial_application})"
+                 class="one check"
+                 ng-value="true"
+                 />
+              <label for="binomial-application" class="check one pointer">
+              <span class="fr">
+              Je candidate en binôme
+              </span>
+              <span class="en">
+                I am applying as a duo
+              </span>
+              </label>
+              <div class="" ng-if="candidature.binomial_application">
+                 <div class="">
+                    <input
+                       id="binomial-application-with"
+                       type="text"
+                       ng-model="candidature.binomial_application_with"
+                       ng-change="candidature.patch({binomial_application_with : candidature.binomial_application_with||''})"
+                       ng-model-options='{ debounce: 1000 }'
+                       name="cBinomeWith"
+                       placeholder = ""
+                       list="app_users"
+                       required
+                       />
+                       <datalist id="app_users">
+                              <option ng-repeat="user in application_users" value="{{user.name}}"></option>
+                      </datalist>
+                    <div ng-show="form.cBinomeWith.$error.required" class="help-block error">
+
+                           <span class="fr">
+                           Champs requis
+                           </span>
+                           <span class="en">
+                           required
+                           </span>
+                    </div>
+                    <label for="binomial-application-with">
+                    <span class="field-state"></span>
+                    <span class="fr">Nom et Prénom du binôme</span>
+                    <span class="en">Name and surname of the binomial</span>
+                    </label>
+                 </div>
+              </div>
+           </div>
+   </form>
+
+   <div class="navigation">
+      <a class="btn prev" ui-sref="candidature.motivations"><span class="fr">Retour</span><span class="en">Back</span></a>
+      <a class="btn next" ui-sref="candidature.intentions-projects"><span class="fr">Continuer</span><span class="en">Continue</span></a>
+   </div>
+</div>

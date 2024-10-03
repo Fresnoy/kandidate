@@ -41,76 +41,8 @@
    </h1>
    <form name="form" ng-submit="form.$valid && submit()" class="css-form" novalidate enctype="multipart/form-data">
 
-     <h3 class='fr'>Candidature en duo</h3>
-     <h3 class='en'>Applying as a duo </h3>
-     <p>
-       <span class='fr'>
-         Il est possible de candidater en duo, chacun des membres du duo doit s’inscrire, il y a donc deux dossiers administratifs
-         distincts présentant le même dossier artistique.<br/>
-         Une candidature en duo n’est recevable qu’à la condition expresse que les membres du duo participent à l’intégralité
-         des propositions pédagogiques (conjointement et non en alternance).<br/>
-         Chaque candidat doit s'inscrire individuellement et mentionner le nom et le prénom du binôme.
-       </span>
-         <span class='en'>You have the option to apply as a duo. This means both members must enroll, 
-            resulting in two separate administrative files for the same artistic dossier.<br/>
-            A dual application is only accepted if both members fully participate in the pedagogical propositions jointly, 
-            not alternately. <br/>
-            Each member must register individually and provide the name and first name of the other member.
-         </span>
-           <div class="field">
-              <input
-                 type="checkbox"
-                 id="binomial-application"
-                 ng-model="candidature.binomial_application"
-                 name="cBinome"
-                 ng-change="candidature.patch({binomial_application: candidature.binomial_application})"
-                 class="one check"
-                 ng-value="true"
-                 />
-              <label for="binomial-application" class="check one pointer">
-              <span class="fr">
-              Je candidate en binôme
-              </span>
-              <span class="en">
-                I am applying as a duo
-              </span>
-              </label>
-              <div class="" ng-if="candidature.binomial_application">
-                 <div class="">
-                    <input
-                       id="binomial-application-with"
-                       type="text"
-                       ng-model="candidature.binomial_application_with"
-                       ng-change="candidature.patch({binomial_application_with : candidature.binomial_application_with||''})"
-                       ng-model-options='{ debounce: 1000 }'
-                       name="cBinomeWith"
-                       placeholder = ""
-                       list="app_users"
-                       required
-                       />
-                       <datalist id="app_users">
-                              <option ng-repeat="user in application_users" value="{{user.name}}"></option>
-                      </datalist>
-                    <div ng-show="form.cBinomeWith.$error.required" class="help-block error">
+     
 
-                           <span class="fr">
-                           Champs requis
-                           </span>
-                           <span class="en">
-                           required
-                           </span>
-                    </div>
-                    <label for="binomial-application-with">
-                    <span class="field-state"></span>
-                    <span class="fr">Nom et Prénom du binôme</span>
-                    <span class="en">Name and surname of the binomial</span>
-                    </label>
-                 </div>
-              </div>
-           </div>
-
-
-     <hr/>
      <div class="fr">
 
          <h3>Projets envisagés durant le cursus du Fresnoy</h3>
@@ -138,7 +70,11 @@
            <strong>Second year</strong><br/>An art project based on a digital approach.
         </p>
     </div>
+  <!-- 
 
+         FIRST YEAR
+         
+   -->
    <h3>
      <span class="fr">Première année</span>
      <span class="en">First Year Project</span>
@@ -247,26 +183,141 @@
       </div>
       <label class="topborder" for="artistic-referencies-project-1">
             <span class="field-state required"></span>
-            <span class="fr">Références artistiques (20 lignes, format pdf) </span>
+            <span class="fr">Références artistiques <br/>pour la première année (20 lignes, format pdf) </span>
             <span class="en">ARTISTIC REFERENCES (20 LINES, PDF FORMAT)</span>
       </label>
    </div>
+   <!-- 
+
+         SECOND YEAR
+
+   -->
+   <h3>
+      <span class="fr">Seconde année</span>
+      <span class="en">Second year</span>
+    </h3>
+    <div class="field">
+       <input name="cProject2" ng-model="candidature.considered_project_2" hidden required />
+       <div id="considered-project-2"
+          ng-model="candidature.considered_project_2"
+          name="cJustification"
+          ngf-select="upload(candidature.considered_project_2, candidature, 'considered_project_2') " 
+          ngf-drop="upload(candidature.considered_project_2, candidature, 'considered_project_2') " 
+          ngf-capture="'camera'"
+          accept="application/pdf"
+          ngf-accept="'application/pdf'"
+          ngf-pattern="'application/pdf'"
+          ngf-model-invalid="invalidFileProject2"
+          class="media-upload"
+          ng-show='!candidature.considered_project_2'
+          >
+          <span class="upload-file" />
+       </div>
+       <div class="item" ng-if="candidature.considered_project_2" ng-init='RC_prj2=false'>
+          <a class="link" target='_blank' href="{{candidature.considered_project_2}}"><img  /></a>
+          <span class="name">{{candidature.considered_project_2.split('.').pop()}}</span>
+          <span class="trash" ng-click="RC_prj2=true" />
+          <div class="delete-pane" ng-show="RC_prj2">
+             <span class="trash" 
+                   ng-click="candidature.considered_project_2=''; RC_prj2=false;
+                             candidature.patch({'considered_project_2': null});" />
+             <span class="name"><span class="fr">Supprimer</span><span class="en">Delete</span></span>
+             <span class="cancel" ng-click="RC_prj2=false"></span>
+          </div>
+       </div>
+       <div ng-show="invalidFileProject2.$errorMessages" ng-messages="invalidFileProject2.$errorMessages" class="help-block error">
+          <div ng-message="pattern">
+             <span class="fr">Format accepté : pdf</span>
+             <span class="en">Accepted format : pdf</span>
+          </div>
+       </div>
+       <div ng-show="form.cProject2.$touched && form.cProject2.$invalid" ng-messages="form.cProject2.$error" class="help-block error">
+          <div ng-message="required">
+             <span class="fr">Obligatoire</span>
+             <span class="en">Required</span>
+          </div>
+          <div ng-message="considered_project_2">
+             <span class="fr">Valeur éronnée</span>
+             <span class="en">Value Error</span>
+          </div>
+       </div>
+       <label class="topborder" for="considered-project-2">
+       <span class="field-state required"></span>
+       <span class="fr">Projet envisagé <br/>pour la seconde année (1 page) </span>
+       <span class="en">PROJECT ENVISIONED FOR THE SECOND YEAR (1 PAGE)</span>
+       </label>
+    </div>
+    <div class="field">
+ 
+      <input name="cRefProject2" ng-model="candidature.artistic_referencies_project_2" hidden required />
+      <div id="considered-referencies-project-2"
+         ng-model="candidature.artistic_referencies_project_2"
+         name="cARP2"
+         ngf-select="upload(candidature.artistic_referencies_project_2, candidature, 'artistic_referencies_project_2') " 
+         ngf-drop="upload(candidature.artistic_referencies_project_2, candidature, 'artistic_referencies_project_2') " 
+         ngf-capture="'camera'"
+         accept="application/pdf"
+         ngf-accept="'application/pdf'"
+         ngf-pattern="'application/pdf'"
+         ngf-model-invalid="invalidFileRefProject1"
+         required
+         class="media-upload"
+         ng-show='!candidature.artistic_referencies_project_2'
+         >
+         <span class="upload-file" />
+      </div>
+      <div class="item" ng-if="candidature.artistic_referencies_project_2" ng-init='RC_ref_prj2=false'>
+         <a class="link" target='_blank' href="{{candidature.artistic_referencies_project_2}}"><img  /></a>
+         <span class="name">{{candidature.artistic_referencies_project_2.split('.').pop()}}</span>
+         <span class="trash" ng-click="RC_ref_prj1=true" />
+         <div class="delete-pane" ng-show="RC_ref_prj1">
+            <span class="trash" 
+                  ng-click="candidature.artistic_referencies_project_2=''; RC_ref_prj1=false;
+                            candidature.patch({'artistic_referencies_project_2': null});" />
+            <span class="name"><span class="fr">Supprimer</span><span class="en">Delete</span></span>
+            <span class="cancel" ng-click="RC_ref_prj2=false"></span>
+         </div>
+      </div>
+      <div ng-show="invalidFileRefProject2.$errorMessages" ng-messages="invalidFileRefProject2.$errorMessages" class="help-block error">
+         <div ng-message="pattern">
+            <span class="fr">Format accepté : pdf</span>
+            <span class="en">Accepted format : pdf</span>
+         </div>
+      </div>
+       <div ng-show="form.cARP2.$touched && form.cARP2.$invalid" ng-messages="form.cARP2.$error" class="help-block error">
+          <div ng-message="required">
+             <span class="fr">Obligatoire</span>
+             <span class="en">required</span>
+          </div>
+          <div ng-message="maxlength">
+             <span class="fr">maxlength</span>
+             <span class="en">maxlength</span>
+          </div>
+       </div>
+       <label class="topborder" for="artistic-referencies-project-2">
+       <span class="field-state required"></span>
+       <span class="fr">Références artistiques <br/>pour la seconde année (20 lignes, format pdf)</span>
+       <span class="en">ARTISTIC REFERENCES (20 LINES, PDF FORMAT)</span>
+       </label>
+    </div>
+ 
+
+
+
    </form>
    <div ng-show="findDuplicatesValues([candidature.considered_project_1, 
                                          candidature.considered_project_2, 
                                          candidature.artistic_referencies_project_1, 
                                          candidature.artistic_referencies_project_2])";>
       <div class="alert-warning" style="padding:20px;" >
-         <p class="fr">Il semble que certain des documents projets et références artistiques soient les mêmes, hors ils doivent être différents 
-            (projets différents pour les deux années et références artistiques distinctes à chaques projet)</p>
-         <p class="en">It seems that some of the project documents and artistic references are the same, but they must be different 
-            (different projects for the two years and distinct artistic references for each project)</p>
+         <p class="fr">Il semble que vous ayez chargé deux documents identiques.</p>
+         <p class="en">It looks like you've uploaded two identical documents.</p>
       </div>
    </div>
 
 
    <div class="navigation">
-      <a class="btn prev" ui-sref="candidature.motivations"><span class="fr">Retour</span><span class="en">Back</span></a>
-      <a class="btn next" ui-sref="candidature.intentions-project-2"><span class="fr">Continuer</span><span class="en">Continue</span></a>
+      <a class="btn prev" ui-sref="candidature.duo"><span class="fr">Retour</span><span class="en">Back</span></a>
+      <a class="btn next" ui-sref="candidature.doctorate"><span class="fr">Continuer</span><span class="en">Continue</span></a>
    </div>
 </div>

@@ -8,9 +8,9 @@
       <span class="en">Language skills</span>
    </h2>
    <div class="fr">
-      <p>Les candidats doivent posséder une connaissance du français et de l’anglais parlés. Toutes les étapes de la procédure de sélection
-        (dossier et entretien oral) se font en français ou en anglais, au choix du candidat.
-         <br/> Il est rappelé aux candidats admis que les études au Fresnoy se font ensuite en français.
+      <p>Les candidat·es doivent posséder une connaissance du français et de l’anglais parlés. Toutes les étapes de la procédure de sélection
+        (dossier et entretien oral) se font en français ou en anglais, au choix des candidat·es.
+         <br/> Il est rappelé aux candidat·es admi·es que les études au Fresnoy se font ensuite en français.
       </p>
    </div>
    <div class="en">
@@ -24,14 +24,18 @@
    </h2>
    <div class="fr">
       <p>
-         La sélection des étudiants est annuelle et se déroulera en une seule session selon les étapes et le calendrier suivants&nbsp;:
+         La sélection des étudiant·es est annuelle et se déroulera en une seule session selon les étapes et le calendrier suivants&nbsp;:
       </p>
       <ul>
          
          <li>Dossier de candidature (inscription administrative et dossier artistique), enregistrement en ligne, au plus tard le
            <strong>{{ campaign.candidature_date_end | no_timezone | date : "EEEE d MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }}, heure de Paris</strong>.
            Un mail de confirmation de votre inscription vous sera adressé à la fin de la procédure d’enregistrement de votre candidature, 
-           il est indispensable pour sa validation.</li>
+           il est indispensable pour sa validation.<br>
+         
+         
+           <em>Pensez à anticiper la finalisation de votre candidature pour éviter tout problème technique de dernière minute</em>.
+         </li>
          <li>Portes ouvertes : <strong>{{ campaign.information_and_tour_date | no_timezone | date : "EEEE d MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }} précises (heure de Paris)</strong>.</li>
          <li>Présélection sur dossier, annonce des résultats le
            <strong>{{ campaign.interviews_publish_date | date : "EEEE d MMMM yyyy" | translate_en_to_fr | lowercase }}</strong>

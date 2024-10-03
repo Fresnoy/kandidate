@@ -280,8 +280,6 @@ angular.module('candidature', ['candidature.application',
           rec:1
           url:current.replace("/#/", '/')
 
-        console.log(param)
-
         AnalyticsService.one().customGET("matomo.php", param)
         
     );

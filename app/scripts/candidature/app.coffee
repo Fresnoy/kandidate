@@ -277,12 +277,12 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
                           $rootScope.loadInfos($rootScope)
                           $rootScope.step.current = "18"
       )
-      # ONLINE CANDIDATURE - 19 - Projet 1
-      $stateProvider.state('candidature.intentions-project-1',
-                  url: '/project-1'
+      # ONLINE CANDIDATURE - 19 - DUO
+      $stateProvider.state('candidature.duo',
+                  url: '/duo'
                   views:
                     'application_content_view':
-                        templateUrl: 'views/candidature/pages/19-intentions-project-1.html',
+                        templateUrl: 'views/candidature/pages/19-duo.html',
                         controller: ($rootScope, $scope, Users) ->
                           $rootScope.loadInfos($rootScope)
                           $rootScope.step.current = "19"
@@ -303,11 +303,11 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
 
       )
       # ONLINE CANDIDATURE - 20 - Projet 1
-      $stateProvider.state('candidature.intentions-project-2',
-                  url: '/project-2'
+      $stateProvider.state('candidature.intentions-projects',
+                  url: '/projects'
                   views:
                     'application_content_view':
-                        templateUrl: 'views/candidature/pages/20-intentions-project-2.html',
+                        templateUrl: 'views/candidature/pages/20-intentions-projects.html',
                         controller: ($rootScope) ->
                           $rootScope.loadInfos($rootScope)
                           $rootScope.step.current = "20"
