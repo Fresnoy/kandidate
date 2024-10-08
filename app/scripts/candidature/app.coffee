@@ -1,7 +1,7 @@
 # -*- tab-width: 2 -*-
 "use strict"
 angular.module('candidature.application', ['candidature.controllers', 'candidature.directives',
-            'ui.router', 'timer'
+            'ui.router', 'timer',
 ])
 
 .run(['$rootScope', '$state', 'jwtHelper', ($rootScope, $state, jwtHelper) ->
