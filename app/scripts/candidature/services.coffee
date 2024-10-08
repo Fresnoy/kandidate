@@ -131,5 +131,5 @@ angular.module('candidature.services', ['restangular'])
 .factory('AnalyticsService', (Restangular) ->
         return Restangular.withConfig((RestangularConfigurer) ->
             RestangularConfigurer.setBaseUrl(config.analytics_uri)
-        ).service('')
+        ).service('matomo')
 )
