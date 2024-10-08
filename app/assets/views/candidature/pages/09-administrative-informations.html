@@ -7,8 +7,6 @@
       <p>L'INE signifie "Identifiant National Elève". Ce numéro est composé de neuf chiffres et deux lettres depuis la rentrée 2018
         (auparavant, il comportait dix chiffres et une lettre).
         Il est indiqué en haut sur le relevé de notes du baccalauréat en tant qu'« identifiant national ».
-        Seuls les étudiants ayant passé leur baccalauréat à partir de 1995 possèdent un numéro BEA.
-        <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_BEA">Source Wikipédia</a> </p>
    </div>
    <div class="en">
       <p>The selection procedure is open to all candidates, of any sex or nationality, aged 35 years maximum on 1st January of the current year
@@ -85,12 +83,12 @@
                   ng-change="artist.patch({'nickname': artist.nickname})" name="aNickname" />
             <label for="name">
 
-            <span class="fr">Nom et prénom d’usage, d’artiste ou pseudonyme (si différent de l’état civil)</span>
+            <span class="fr">Nom et prénom d’usage, nom d’artiste ou pseudonyme (si différent de l’état civil)</span>
             <span class="en">Everyday name, artist’s name or pseudonym (if different from your ID)</span>
             </label>
          </div>
          <blockquote>
-         <p class="fr">Si vous complétez le champ ci-dessus, c’est ce deuxième nom qui sera utilisé dans la communication et les documents pédagogiques tout au long de votre scolarité au Fresnoy.</p>
+         <p class="fr">Si vous complétez le champ ci-dessus, c’est ce nom qui sera utilisé dans la communication et les documents pédagogiques tout au long de votre scolarité au Fresnoy.</p>
          <p class="en">If you fill in the box above, it is this second name which will be used in communications and on teaching documents throughout your time at Le Fresnoy.</p>
          </blockquote>
           <!--
@@ -154,7 +152,7 @@
                     <span class="en">Required</span>
                  </div>
                  <div ng-message="min">
-                    <span class="fr">Il faut avoir moins de 35 ans (être né après  le <span ng-bind="campaign.date_of_birth_max | date : 'd MMMM yyyy'  | translate_en_to_fr" />) </span>
+                    <span class="fr">Il faut avoir moins de 35 ans (être né·e après  le <span ng-bind="campaign.date_of_birth_max | date : 'd MMMM yyyy'  | translate_en_to_fr" />) </span>
                     <span class="en">to be completed</span>
                  </div>
                  <div ng-message="max">
@@ -318,7 +316,7 @@
 
          <!--
          INE
-            Identifiant National Etudiant Unique
+            Identifiant National Etudiant
             10 chiffres + 1 lettre ou 9 chiffres + 2 lettres
           -->
          <div class="field">
@@ -330,8 +328,8 @@
                placeholder="{{ine_placeholders[language]}}"
                />
             <label for="cINE">
-            <span class="fr">Numéro Identifiant National Etudiant Unique (INE, pour les personnes ayant étudié en France)</span>
-            <span class="en">INE number (for people who have studied in France)</span>
+            <span class="fr">Identifiant National Étudiant (INE, pour les personnes ayant étudié en France)</span>
+            <span class="en">INE (for people who have studied in France)</span>
             </label>
          </div>
 
