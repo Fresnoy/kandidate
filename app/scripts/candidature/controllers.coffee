@@ -645,6 +645,12 @@ angular.module('candidature.controllers', ['candidature.services'])
       # magic formule
       return arr.filter((item, index) => arr.indexOf(item) != index).length > 0
 
+
+  # Warning / SUMMARY status function (if candidat has Master 2)
+  $rootScope.has_master_description = 'Justificatif Master'
+  $rootScope.findMasterInDescription = (item) ->  
+        return item.description == $rootScope.has_master_description
+
 )
 
 
@@ -872,10 +878,6 @@ angular.module('candidature.controllers', ['candidature.services'])
 
       $scope.french_art_cursus = ""
       $scope.justificatif_placeholders = {en:"Document title",fr:"Titre du justificatif"}
-
-      # Warning status function (if candidat has Master 2)
-      $scope.findDescription = (item) ->  
-        return item.description == 'Justificatif Master'
  
       #patch Medium
       $scope.uploadFile = (data, model) ->

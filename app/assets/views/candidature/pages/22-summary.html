@@ -50,9 +50,14 @@
       <div class="col-xs-12 col-md-6 col-lg-6">
         <a class="pointer" ui-sref="candidature.curiculum">
           <div class="field"><label><span class="fr">Master / 7 ans exp.</span><span class="en">Master / 7 year exp.</span></label>   
-            <input class="hidden" type="text" ng-model="candidature.master_degree" readonly required/><span class="isvalid" /></div>
+            <input class="hidden" type="text" ng-model="candidature.master_degree" readonly required/><span class="isvalid" /></div>            
         </a>
         <a class="pointer" ui-sref="candidature.cv">
+          <div ng-if="candidature.master_degree=='Y' && cursus_justifications.media.length > 0 && !cursus_justifications.media.find( findMasterInDescription );"
+            class="field">
+            <label><p class="fr">Il manque votre justificatif de Master 2.</p><p class="en">You have not included your Master’s certificate.</p></label>
+            <input class="hidden" type="text" ng-model="INVALIDMODEL" readonly required /><span class="isvalid" />
+         </div>
           <div class="field"><label><span class="fr">CV</span><span class="en">CV</span></label> 
               <input class="hidden" type="text" ng-model="candidature.curriculum_vitae" readonly required/><span class="isvalid" />
           </div>
@@ -144,6 +149,15 @@
         </a>
       </div>
     </div>
+    <a class="pointer" ui-sref="candidature.intentions-projects">
+      <div ng-if="findDuplicatesValues([candidature.considered_project_1, 
+        candidature.considered_project_2, 
+        candidature.artistic_referencies_project_1, 
+        candidature.artistic_referencies_project_2])"; class="field">
+          <label><p class="fr">Il semble que vous ayez chargé deux documents identiques.</p><p class="en">You seem to have uploaded two identical documents</p></label>
+          <input class="hidden" type="text" ng-model="INVALIDMODEL" readonly required /><span class="isvalid" />
+        </div>
+    </a>
   </form>
 
 
