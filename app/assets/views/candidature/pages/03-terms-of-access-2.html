@@ -54,13 +54,13 @@
    <div class="en">
       <p>The selection process is annual; it will take place according to the following schedule:</p>
       <ul>
-         <li>Administrative registration and dispatch of artistic dossier no later than midnight on<br/>
+         <li>Administrative registration and dispatch of artistic dossier on<br/>
           <strong>{{ campaign.candidature_date_end | no_timezone  | date : "EEEE MMMM d, yyyy  'at' h a" }}, Paris time</strong>.
           An email confirming your registration will be sent to you at the end of the registration procedure for your application,
           it is essential for its validation.
           </li>
-          <li>Information and tour: <strong>{{ campaign.information_and_tour_date | no_timezone | date : "EEEE MMMM d, yyyy  'at' h a" }} 
-            ,Paris time</strong>.</li>
+          <li>Information and tour: <strong>{{ campaign.information_and_tour_date | no_timezone | date : "EEEE MMMM d, yyyy  'at' h a" }}, 
+            Paris time</strong>.</li>
          <li>1st selection of applications.
            List published online on
             <strong>{{ campaign.interviews_publish_date | date : "EEEE MMMM d, yyyy" }}</strong>
@@ -68,7 +68,7 @@
          <li>Interviews, from
            {{ campaign.interviews_start_date | date : "EEEE MMMM d" }} to
            {{ campaign.interviews_end_date | date : "EEEE MMMM d, yyyy" }}.
-           List made public and on line on
+           List published online on
            <strong>{{ campaign.selected_publish_date | date : "EEEE MMMM d, yyyy" }}</strong>.</li>
       </ul>
    </div>

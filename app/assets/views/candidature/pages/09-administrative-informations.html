@@ -153,11 +153,11 @@
                  </div>
                  <div ng-message="min">
                     <span class="fr">Il faut avoir moins de 35 ans (être né·e après  le <span ng-bind="campaign.date_of_birth_max | date : 'd MMMM yyyy'  | translate_en_to_fr" />) </span>
-                    <span class="en">to be completed</span>
+                    <span class="en">The application is only available for individuals born after <span ng-bind="campaign.date_of_birth_max | date : 'd MMMM yyyy'" /> </span>
                  </div>
                  <div ng-message="max">
                     <span class="fr">Il faut être majeur pour s'inscrire</span>
-                    <span class="en">to be completed</span>
+                    <span class="en">You must be of legal age to register</span>
                  </div>
               </div>
               <label for="birthdate">
