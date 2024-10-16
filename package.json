@@ -9,8 +9,6 @@
   "author": "Guillaume Libersat (http://fuzzyfrequency.com/)",
   "main": "./lib/index",
   "dependencies": {
-    "angulartics-piwik": "^1.0.6",
-    "proximedia-angular-piwik": "^0.4.2",
     "sass-brunch": "2.6.3"
   },
   "devDependencies": {
