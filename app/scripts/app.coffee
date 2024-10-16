@@ -25,8 +25,7 @@ angular.module('candidature', ['candidature.application',
                   'ngAnimate', 'chieffancypants.loadingBar', 'ui.bootstrap', 'ngMessages',
                   'ngSanitize', 'markdown',
                   'iso-3166-country-codes', 'ngFileUpload', 'ngPlacesAutocomplete',
-                  'angular-clipboard',
-                  'angular-google-analytics',])
+                  'angular-clipboard',])
 
 # CORS
 .config(['$httpProvider', ($httpProvider) ->
@@ -272,17 +271,17 @@ angular.module('candidature', ['candidature.application',
 
 ])
 
-
-.config(['AnalyticsProvider', (AnalyticsProvider) ->
-   # Add configuration code as desired
-   AnalyticsProvider.setAccount('UA-16448202-2')
-   AnalyticsProvider.trackUrlParams(true);
-])
-
-.run(['Analytics', '$rootScope', (Analytics, $rootScope) ->
+.run(['$rootScope', 'AnalyticsService', ($rootScope, AnalyticsService) ->
 
     $rootScope.$on("$locationChangeStart", (event, next, current) ->
-        Analytics.trackPage(Analytics.getUrl());
+
+        param = 
+          idsite:config.analytics_site_id
+          rec:1
+          url:current.replace("/#/", '/')
+
+        AnalyticsService.one().customGET("matomo.php", param)
+        
     );
    # codes
 ])

@@ -2,11 +2,11 @@
    <span class="close" ng-click="show_help(false)">x</span>
    <h1><class class="fr">Aide</class><class class="en">Help</class></h1>
    <div class="fr">
-      <p>Les candidats doivent posséder une connaissance
+      <p>Les candidat·es doivent posséder une connaissance
 du français et de l’anglais parlés. Toutes les étapes
 de la procédure de sélection (dossier et entretien
 oral), se font en français ou en anglais, au choix
-du candidat. Il est rappelé aux candidats admis
+du, de la candidat·e. Il est rappelé aux candidat·es admis·e
 que les études au Fresnoy se font ensuite en
 français.</p>
    </div>
@@ -35,7 +35,7 @@ that the course is carried out in French.</p>
             required>
             <option value="">{{languageSelectOption[language]}}</option>
             <option ng-repeat="lang in LANGUAGES" value="{{lang[0].split('-')[0]}}">
-               {{lang[1].englishName}}
+               {{ lang[1].englishName }}
             </option>
          </select>
          <div ng-show="form3.uMotherTongue.$touched && form3.uMotherTongue.$invalid" ng-messages="form3.uMotherTongue.$error" class="help-block error">

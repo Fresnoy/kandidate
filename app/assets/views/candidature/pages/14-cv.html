@@ -73,6 +73,17 @@
    <p class="en">Copies of your diplomas<span ng-if="candidature.master_degree=='Y'"> (master)</span>, certificates, and qualifications<br/>
      <em class="additionnalInfo">(image formats or pdf)</em></p>
    </p>
+
+   <div ng-show="candidature.master_degree=='Y' && cursus_justifications.media.length > 0 
+                 && !cursus_justifications.media.find( findMasterInDescription ); 
+                 ">
+      <div class="alert-warning" >
+         <p class="fr">Il manque votre justificatif de Master 2.</p>
+         <p class="en">You have not included your Master’s certificate.</p>
+      </div>
+   </div>
+
+
    <div class="field">
 
          <div ng-repeat="(keyitem, item) in cursus_justifications.media | orderBy:'1*position' track by $index"
@@ -81,8 +92,14 @@
                class="item-list">
 
              <div class="item" ng-if="item.file || item.picture" ng-init='RC_CursusJustif[$index]=false'>
-               <a class="link"  ng-show="item.file || item.picture" target='_blank' href="{{item.file || item.picture}}"><img  /></a>
-               <input class="name small-font no-border" type="text" placeholder="" ng-model="item.label" ng-change="item.patch({label: item.label})" class="no-border" required />
+                <a class="link"  ng-show="item.file || item.picture" target='_blank' href="{{item.file || item.picture}}"><img  /></a>
+                <input class="name small-font no-border" type="text" placeholder="" ng-model="item.label" 
+                ng-change="item.patch({label: item.label})" class="no-border" required />
+                <span class="icon icon-graduation active" style="vertical-align: middle;" 
+                      title="Master" ng-show="candidature.master_degree=='Y' && item.description==has_master_description"></span>
+               <!-- <input type="checkbox" ng-model="item.description" ng-true-value="'true'" 
+                      ng-change="item.patch({description: ''+item.description})"                      
+                      class="" style="cursor:help" disabled title="Master"  /> -->
                <span class="trash" ng-click="RC_CursusJustif[$index]=true" />
                <div class="delete-pane" ng-show="RC_CursusJustif[$index]">
                    <span class="trash" ng-click="removeItem(cursus_justifications.media, $index); RC_CursusJustif[$index]=false" />
@@ -93,6 +110,7 @@
              <!-- MODAL -->
              <div class="modal show" ng-if="!item.label">
                 <div class="modal-content">
+
                   <h2 class="fr">Veuillez entrer le titre du justificatif</h2>
                      
                     <p class="fr block">
@@ -115,6 +133,23 @@
                     <span class="en">Title</span>
                   </label>
 
+                </div>
+
+                <!-- CHECKBOX BAC + 5  -->
+                <div class="field">
+                  <input type="checkbox"
+                    name="cmaster"
+                    id="cmaster"
+                    ng-model="description[$index]"
+                    ng-init="description[$index]=false"
+                    ng-true-value="'{{has_master_description}}'"
+                    ng-false-value="''"
+                    class="one check"
+                  />
+                  <label for="cmaster" class="one check pointer">
+                    <span class="fr">Ce diplôme atteste mon niveau baccalauréat +5 (Master 2) </span>
+                    <span class="en">This diploma shows that I have reached Master’s Degree (high school diploma + 5 years)</span>
+                  </label>
                 </div>
 
                 <div>
@@ -153,7 +188,8 @@
                  <!--VALIDATION : Patch on validation AND on_complete_upload -->
                  <div class="btn green" ng-show="label[$index].length > 7"
                         ng-click='item.label = label[$index];
-                           item.patch({label: item.label, position: keyitem})'
+                                  item.description = ""+description[$index];
+                           item.patch({label: item.label, description:item.description, position: keyitem})'
                    >
                         <span class="fr">Valider</span>
                         <span class="en">Confirm</span>

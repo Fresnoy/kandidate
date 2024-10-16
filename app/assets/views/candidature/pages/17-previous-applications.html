@@ -2,7 +2,7 @@
    <span class="close" ng-click="show_help(false)">x</span>
    <h1><class class="fr">Aide</class><class class="en">Help</class></h1>
    <div class="fr">
-        <p>Chaque candidat peut se présenter au maximum
+        <p>Chaque candidat·e peut se présenter au maximum
 trois fois aux procédures de sélection, sous
 réserve de la limite d’âge. </p>
    </div>
@@ -37,7 +37,7 @@ they remain within the age limit. </p>
                 </label>
                 <div ng-if='!candidature.first_time'>
                   <span  class="fr">En quelle(s) année(s) ?</span>
-                  <span  class="en">Year (s)?</span>
+                  <span  class="en">Year(s)?</span>
                   <div ng-repeat="(key, item) in last_applications_years track by $index" >
                      <div class="item" ng-init='RC_last[$index]=false'>
                         <span class="name" ng-bind="item" />
