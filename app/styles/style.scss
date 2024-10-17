@@ -17,6 +17,14 @@ $flag-icon-css-path: '../images/flags' !default;
   height: 18px;
 }
 
+.pointer{
+  cursor: pointer;
+}
+
+.cursor-help{
+  cursor: help;
+}
+
 .icon{
   background-position: center center;
   background-repeat: no-repeat;
