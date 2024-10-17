@@ -905,13 +905,13 @@ body {
 
       .bg{
         height: 100%;
-        background-size: cover;
-        opacity: 0.5;
+        background-size: contain;
+        opacity: 1;
         background-position-y: 33%;
         position: fixed;
         overflow: hidden;
         width: 100%;
-        transition: all 0.5s ease-out;
+        // transition: all 0.5s ease-out;
 
       }
       .copyright{
@@ -924,12 +924,13 @@ body {
 
       }
       .step-infos{
-          color: black;
+          color: #808080;
           top:23%;
+          mix-blend-mode: difference;
           position: absolute;
           margin-left: 80px;
           padding-left: 20px;
-          border-left: 5px solid rgb(0, 0, 0);
+          border-left: 5px solid #808080;
           .current{
             font-size: 64px;
             font-weight: bold;

@@ -649,7 +649,9 @@ angular.module('candidature.controllers', ['candidature.services'])
   # Warning / SUMMARY status function (if candidat has Master 2)
   $rootScope.has_master_description = 'Justificatif Master'
   $rootScope.findMasterInDescription = (item) ->  
-        return item.description == $rootScope.has_master_description
+        if(item)
+          return item.description == $rootScope.has_master_description
+        return false
 
 )
 

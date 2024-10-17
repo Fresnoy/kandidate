@@ -88,7 +88,7 @@
             <div ng-if="cursus_justifications.media.length">
               <a class="pointer" ui-sref="candidature.cv">
                 <label><span class="fr">Documents</span><span class="en">Documents</span></label>
-                <div ng-repeat="item in cursus_justifications.media" ng-model="cursus_justifications.media">
+                <div ng-repeat="item in cursus_justifications.media track by $index" ng-model="cursus_justifications.media">
                   <div>
                     <input type="text" ng-if='(item.picture || item.file)' ng-model="(item.label)" title="{{item.label}}" readonly/>
                   </div>
