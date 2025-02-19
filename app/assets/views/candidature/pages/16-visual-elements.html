@@ -45,81 +45,82 @@
     </div>
 </div>
 
-<div class="">
-   <h1>
-      <span class="fr">Éléments visuels</span>
-      <span class="en">Visual elements</span>
-   </h1>
-   <form name="form1" ng-submit="form.$valid && submit()" class="css-form" novalidate>
-     <div class="fr">
-      <p>Cette vidéo d'une <strong>durée maximale de 8 minutes</strong> sera vue successivement par 
-         le jury de présélection et de l'entretien oral.</p>
-      <p>Voir l'<a class="pointer" ng-click="show_help(true)">aide pour plus d'information sur la vidéo à fournir</a>.</p>
-      
+   <div class="">
+      <h1>
+         <span class="fr">Éléments visuels</span>
+         <span class="en">Visual elements</span>
+      </h1>
+      <form name="form1" ng-submit="form.$valid && submit()" class="css-form" novalidate>
+      <div class="fr">
+         <p>Cette vidéo d'une <strong>durée maximale de 8 minutes</strong> sera vue successivement par 
+            le jury de présélection et de l'entretien oral.</p>
+         <p>Voir l'<a class="pointer" ng-click="show_help(true)">aide pour plus d'information sur la vidéo à fournir</a>.</p>
+         
 
-    </div>
-    <div class="en">
-      <p>Submit a <a class="pointer" ng-click="show_help(true)">video</a> 
-         that showcases the most representative part of your work.</p>
-      <p>This video, with a <strong>maximum length of 8 minutes</strong> will be viewed twice: once by the pre-selection 
-         jury and a second time by the interview jury.</p>
-       <p>See <a class="pointer" ng-click="show_help(true)">“help” for more information about the link to be provided</a>.</p>
-    </div>
+      </div>
+      <div class="en">
+         <p>Submit a <a class="pointer" ng-click="show_help(true)">video</a> 
+            that showcases the most representative part of your work.</p>
+         <p>This video, with a <strong>maximum length of 8 minutes</strong> will be viewed twice: once by the pre-selection 
+            jury and a second time by the interview jury.</p>
+         <p>See <a class="pointer" ng-click="show_help(true)">“help” for more information about the link to be provided</a>.</p>
+      </div>
 
-    <blockquote>
-      <p class="fr"><strong>À noter : </strong><br>
-        Le jury de présélection disposera de cette vidéo ainsi que de l’ensemble des éléments de votre dossier de candidature (note d’intention, cv, etc …). <br>
-        Si vous êtes présélectionné·e, cette vidéo sera l’unique document diffusé lors de l’entretien oral. Le jury n’aura pas connaissance des autres éléments de votre dossier de candidature.
-        </p>          
+      <blockquote>
+         <p class="fr"><strong>À noter : </strong><br>
+         Le jury de présélection disposera de cette vidéo ainsi que de l’ensemble des éléments de votre dossier de candidature (note d’intention, cv, etc …). <br>
+         Si vous êtes présélectionné·e, cette vidéo sera l’unique document diffusé lors de l’entretien oral. Le jury n’aura pas connaissance des autres éléments de votre dossier de candidature.
+         </p>          
 
-      <p class="en"><strong>Note: </strong><br>
-         The pre-selection jury will have access to this video along with all other elements of your application (statement of intent, CV, etc.).
-         If you are preselected, this video will be the sole document shown during the oral interview. The jury will not have knowledge of other elements in your application.
-        </p>          
-   </blockquote>
+         <p class="en"><strong>Note: </strong><br>
+            The pre-selection jury will have access to this video along with all other elements of your application (statement of intent, CV, etc.).
+            If you are preselected, this video will be the sole document shown during the oral interview. The jury will not have knowledge of other elements in your application.
+         </p>          
+      </blockquote>
+
 
     <div ng-show="!candidature.presentation_video">
       <hr/>
-      <div >
-          <h4>
-            <span class="fr">Téléverser votre vidéo</span>
-            <span class="en">Upload your vidéo</span>
+            <div >
+               <h4>
+                  <span class="fr">Téléverser votre vidéo</span>
+                  <span class="en">Upload your vidéo</span>
 
-          </h4>
-          <br/>
-          <div ng-if='!candidature.presentation_video'>
-              <p class="fr">Vous ne pourrez pas continuer d'éditer votre dossier de candidature pendant le téléversement de la vidéo,
-                    cela peut prendre de quelques minutes à quelques heures selon votre connexion.<br/>
+               </h4>
+               <br/>
+               <div ng-if='!candidature.presentation_video'>
+                  <p class="fr">Vous ne pourrez pas continuer d'éditer votre dossier de candidature pendant le téléversement de la vidéo,
+                        cela peut prendre de quelques minutes à quelques heures selon votre connexion.<br/>
 
-                </p>
-              <p class="en">Note that during uploading, you cannot continue to edit your application.
-                  The upload may take a few minutes or a few hours, depending on your connection.
-              </p>
-              <div ng-model="video" name="uVideo"
-                 ngf-select="uploadVimeo(video, candidature, 'presentation_video')"
-                 ngf-drop="uploadVimeo(video, candidature, 'presentation_video')"
-                 ngf-capture="'camera'"
-                 accept="video/*"
-                 ngf-accept="'video/*'"
-                 ngf-pattern="'video/*'"
-                 ngf-model-invalid="invalidVideo"
-                 ng-show="!candidature.presentation_video"
-                 class="media-upload"
-                 ng-show='!candidature.presentation_video'
-                 >
-                 <span class="upload-file" />
-              </div>
-              <div ng-show="invalidVideo.$errorMessages" ng-messages="invalidVideo.$errorMessages" class="help-block error">
-                <div ng-message="pattern">
-                   <span class="fr">Fichier non reconnu comme étant une vidéo</span>
-                   <span class="en">this is not a vidéo file</span>
-                </div>
-             </div>
-          </div>
-         
-          <br/>
+                     </p>
+                  <p class="en">Note that during uploading, you cannot continue to edit your application.
+                        The upload may take a few minutes or a few hours, depending on your connection.
+                  </p>
+                  <div ng-model="video" name="uVideo"
+                     ngf-select="uploadVimeo(video, candidature, 'presentation_video')"
+                     ngf-drop="uploadVimeo(video, candidature, 'presentation_video')"
+                     ngf-capture="'camera'"
+                     accept="video/*"
+                     ngf-accept="'video/*'"
+                     ngf-pattern="'video/*'"
+                     ngf-model-invalid="invalidVideo"
+                     ng-show="!candidature.presentation_video"
+                     class="media-upload"
+                     ng-show='!candidature.presentation_video'
+                     >
+                     <span class="upload-file" />
+                  </div>
+                  <div ng-show="invalidVideo.$errorMessages" ng-messages="invalidVideo.$errorMessages" class="help-block error">
+                     <div ng-message="pattern">
+                        <span class="fr">Fichier non reconnu comme étant une vidéo</span>
+                        <span class="en">this is not a vidéo file</span>
+                     </div>
+                  </div>
+               </div>
+               
+               <br/>
 
-      </div>
+            </div>
       <hr/>
       </div>
       <!-- input url video -->
@@ -159,72 +160,69 @@
 
          <div><!-- candidature.presentation_video -->
             <div ng-if="candidature.presentation_video">
-               <div class="embed-responsive embed-responsive-16by9">
-                  <iframe class="embed-responsive-item" ng-if="_isAvailableVideo && candidature.presentation_video.indexOf('player.vimeo.com/video')>0" 
-                          ng-src="{{trustSrc(candidature.presentation_video)}}" ></iframe>
-                          
-               </div>
+               
                <div ng-if="candidature.presentation_video && candidature.presentation_video.indexOf('player.vimeo.com/video')>0 && !_isAvailableVideo">
-                 <strong>
-                 <span class="fr">
-                  La vidéo est bien envoyée et sera disponible pour vérification dans quelques minutes,
-                  n'hésitez pas à revenir plus tard sur votre inscription pour la consulter
-                </span>
-                <span class="en">The video has been sent and will be available for verification in several minutes,
-                  do not hesitate to come back to your inscription to consult it.</span>
-                </strong>
-   
-               </div>
-              <a class="btn block"  ng-show="_isAvailableVideo && candidature.presentation_video.indexOf('player.vimeo.com/video')>0"
-                ng-click='deleteVimeoVideo(candidature.presentation_video.split("/").pop(), candidature, "presentation_video")'>
-                   <span class="fr"><i class="trash"> </i>Effacer la vidéo</span>
-                   <span class="en">delete video</span>
-              </a>
-            </div>
-         </div><!-- // candidature.presentation_video -->
+                  <div ng-if="!_isErrorVideo">
+                      <strong>
+                        <span class="fr">
+                           La vidéo est bien envoyée et sera disponible pour vérification dans quelques minutes,
+                           n'hésitez pas à revenir plus tard sur votre inscription pour la consulter
+                        </span>
+                        <span class="en">The video has been sent and will be available for verification in several minutes,
+                           do not hesitate to come back to your inscription to consult it.</span>
+                     </strong>
+                  </div>
 
-         <p class="fr">Préciser la nature et le contexte des éléments visuels.<br/></p>
-         <p class="en">Please explain the nature and the context of the visual elements:<br/></p>
-         <textarea
-            ng-model="candidature.presentation_video_details"
-            ng-model-options='{ debounce: 1000 }'
-            ng-change="candidature.patch({presentation_video_details : candidature.presentation_video_details||''})"
-            placeholder=""
-            rows="6"
-            name="video-details"
-            required
-            >
-         </textarea>
-         <label for="video-details">
-             <span class="field-state required"></span>
-             <span class="fr">Contenus visuels</span>
-             <span class="en">Visuel content</span>
-         </label>
+                  <div ng-if="_isErrorVideo" class="bg-warning text-warning">
+                     <span class="fr">Une erreur est survenue lors de l'envoi de la vidéo, veuillez réessayer </span>
+                     <span class="en">An error occurred while sending the video, please try again</span>  
+                     <button class="btn grey" ng-click='_isErrorVideo=false;candidature.presentation_video=""'>Reset</button> 
+                  </div>
+               </div>
+
+               <div ng-if="candidature.presentation_video && candidature.presentation_video.indexOf('player.vimeo.com/video')>0 && _isAvailableVideo">
+                  <div class="embed-responsive embed-responsive-16by9">
+                     <iframe class="embed-responsive-item" ng-src="{{ trustSrc(candidature.presentation_video) }}" allowfullscreen></iframe>
+                  </div>
+                  <a class="btn block"  ng-show="_isAvailableVideo && candidature.presentation_video.indexOf('player.vimeo.com/video')>0"
+                     ng-click='deleteVimeoVideo(candidature.presentation_video.split("/").pop(), candidature, "presentation_video")'>
+                        <span class="fr"><i class="trash"> </i>Effacer la vidéo</span>
+                        <span class="en">delete video</span>
+                  </a>
+               </div>
+            </div>
+            
+         </div><!-- // candidature.presentation_video -->
+         
+         <div class="" style="margin-top: 1em;">
+         
+            <p class="fr">Vous venez de déposer vos éléments visuels, merci d’en préciser la nature, le contexte et votre rôle.<br/></p>
+            <p class="en">You have just submitted your visual elements, please specify their nature, context and your role.<br/></p>
+            <textarea
+               ng-model="candidature.presentation_video_details"
+               ng-model-options='{ debounce: 1000 }'
+               ng-change="candidature.patch({presentation_video_details : candidature.presentation_video_details||''})"
+               placeholder=""
+               rows="6"
+               name="video-details"
+               required
+               >
+            </textarea>
+            <label for="video-details">
+               <span class="field-state required"></span>
+               <span class="fr">Contenus visuels</span>
+               <span class="en">Visuel content</span>
+            </label>
+
+         </div>
 
          
 
-      </div>
-
-      
       
 
-    <div class="field">
-         <input
-            type="checkbox"
-            id="honor"
-            ng-model="honor"
-            name="aHonor"
-            class="one check"
-            />
-         <label class="check one pointer" for='honor'>
-             <span class="fr">Je déclare sur l'honneur que tous
-             les documents soumis au jury sont réalisés par moi seul·e, sans aucune aide ou intervention extérieure.</span>
-             <span class="en">I declare that all the visual documents submitted have been created by me, without any help or outside sourcing.</span>
-         </label>
-    </div>
    </form>
    <div class="navigation">
       <a class="btn prev" ui-sref="candidature.artistic-background"><span class="fr">Retour</span><span class="en">Back</span></a>
-      <a class="btn next" ui-sref="candidature.previous-applications" ng-class="{ 'has-error': honor==false }" ><span class="fr">Continuer</span><span class="en">Continue</span></a>
+      <a class="btn next" ui-sref="candidature.previous-applications"><span class="fr">Continuer</span><span class="en">Continue</span></a>
    </div>
 </div>

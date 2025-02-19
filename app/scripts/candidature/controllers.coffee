@@ -1082,6 +1082,7 @@ angular.module('candidature.controllers', ['candidature.services'])
     $rootScope.step.current = "16"
 
     $scope.trustSrc = (src) ->
+      console.log(src)
       return $sce.trustAsResourceUrl(src);
 
     $scope.honor = false
@@ -1093,8 +1094,11 @@ angular.module('candidature.controllers', ['candidature.services'])
     )
 
     $scope._isAvailableVideo = false
+    $scope._isErrorVideo = false
+
     # get the video status (url, readable or being encoded media)
     $scope.isAvailableVideo = (videoUri) ->
+      console.log("isAvailableVideo")
       if(!videoUri)
         $scope._isAvailableVideo = false
         return
@@ -1104,14 +1108,21 @@ angular.module('candidature.controllers', ['candidature.services'])
               Vimeo.setDefaultHeaders({Authorization: "Bearer "+ settings.token})
               video_uri = "videos/"+idVimeo
               Vimeo.one(video_uri).get().then((video_infos) ->
+                $scope._isErrorVideo = false
                 if(video_infos.data.status == "available")
                   $scope._isAvailableVideo = true
+                  $scope._isErrorVideo = false
                 else
                   $scope._isAvailableVideo = false
-              , (error) ->
+              , (error) ->                
+                console.log("get video error", error)
+                if(error.status == 404)
+                  $scope._isErrorVideo = true
                 $scope._isAvailableVideo = false
               )
           , (error) ->
+            console.log("get user settings", error)
+            $scope._isErrorVideo = true
             $scope._isAvailableVideo = false
           )
       else
@@ -1138,6 +1149,8 @@ angular.module('candidature.controllers', ['candidature.services'])
 
       $rootScope.upload_status="Media creation"
       $rootScope.upload_percentage=0
+
+      $scope._isErrorVideo = false
 
       # get Vimeo token api
       VimeoToken.one().get().then((settings) ->
@@ -1227,17 +1240,20 @@ angular.module('candidature.controllers', ['candidature.services'])
                         console.log("ERROR  upload VIMEO")
                         console.log(error)
                         $rootScope.upload_status="Upload Error"
+                        $scope._isErrorVideo = true
                     ,(evt) ->
                         # vimeo loading progress
                         $rootScope.upload_percentage = Math.floor(100.0 * evt.loaded / evt.total)
                     ) # end send video
               ,(error)->
                 console.log("ERROR get TICKET VIMEO")
+                $scope._isErrorVideo = true
                 console.log(error)
                 $rootScope.upload_status="Ticket Error"
              ) # end upload permission
           ,(error)->
                 console.log("ERROR get My Channel VIMEO")
+                $scope._isErrorVideo = true
                 console.log(error)
                 $rootScope.upload_status="Channel Error"
          ) # end me vimeo
