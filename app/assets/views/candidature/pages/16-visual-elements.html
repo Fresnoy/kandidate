@@ -52,6 +52,9 @@
       </h1>
       <form name="form1" ng-submit="form.$valid && submit()" class="css-form" novalidate>
       <div class="fr">
+         <p>Merci de déposer une <a class="pointer" ng-click="show_help(true)">vidéo</a> mettant en lumière une œuvre ou un ensemble 
+            d’extraits d’œuvres que vous avez réalisées et particulièrement représentatifs de votre démarche artistique. 
+         </p>
          <p>Cette vidéo d'une <strong>durée maximale de 8 minutes</strong> sera vue successivement par 
             le jury de présélection et de l'entretien oral.</p>
          <p>Voir l'<a class="pointer" ng-click="show_help(true)">aide pour plus d'information sur la vidéo à fournir</a>.</p>
@@ -59,8 +62,7 @@
 
       </div>
       <div class="en">
-         <p>Submit a <a class="pointer" ng-click="show_help(true)">video</a> 
-            that showcases the most representative part of your work.</p>
+         <p>Submit a <a class="pointer" ng-click="show_help(true)">video</a> that showcases the most representative part of your work.</p>
          <p>This video, with a <strong>maximum length of 8 minutes</strong> will be viewed twice: once by the pre-selection 
             jury and a second time by the interview jury.</p>
          <p>See <a class="pointer" ng-click="show_help(true)">“help” for more information about the link to be provided</a>.</p>
@@ -78,9 +80,31 @@
          </p>          
       </blockquote>
 
+      <div class="" style="margin: 1em 0em;">
+         
+         <p class="fr">Merci de préciser pour chacune des œuvres présentées dans la vidéo, la nature, le contexte et votre rôle précis.<br/></p>
+         <p class="en">Please specify for each of the works presented in the video, the nature, the context and your precise role.<br/></p>
+         <textarea
+            ng-model="candidature.presentation_video_details"
+            ng-model-options='{ debounce: 1000 }'
+            ng-change="candidature.patch({presentation_video_details : candidature.presentation_video_details||''})"
+            placeholder=""
+            rows="6"
+            name="video-details"
+            required
+            >
+         </textarea>
+         <label for="video-details">
+            <span class="field-state required"></span>
+            <span class="fr">Contenus visuels</span>
+            <span class="en">Visuel content</span>
+         </label>
 
-    <div ng-show="!candidature.presentation_video">
-      <hr/>
+      </div>
+
+      <!-- !candidature.presentation_video -->
+      <div ng-show="!candidature.presentation_video"> 
+         <hr/>
             <div >
                <h4>
                   <span class="fr">Téléverser votre vidéo</span>
@@ -88,7 +112,8 @@
 
                </h4>
                <br/>
-               <div ng-if='!candidature.presentation_video'>
+               <!-- inupt -->
+               <div>
                   <p class="fr">Vous ne pourrez pas continuer d'éditer votre dossier de candidature pendant le téléversement de la vidéo,
                         cela peut prendre de quelques minutes à quelques heures selon votre connexion.<br/>
 
@@ -117,12 +142,14 @@
                      </div>
                   </div>
                </div>
+               <!-- // inupt -->
                
                <br/>
 
             </div>
       <hr/>
-      </div>
+      </div> 
+      <!-- // !candidature.presentation_video -->
       <!-- input url video -->
       <div ng-if="candidature.presentation_video">
        <input
@@ -156,9 +183,10 @@
              <span class="en">VIDEO LINK (8 MINUTES MAXIMUM) url</span>
          </label>
       </div>
-         <!-- //INPUT URL VIDEO -->
+      <!-- // input url video -->
 
-         <div><!-- candidature.presentation_video -->
+      <!-- candidature.presentation_video -->
+         <div>
             <div ng-if="candidature.presentation_video">
                
                <div ng-if="candidature.presentation_video && candidature.presentation_video.indexOf('player.vimeo.com/video')>0 && !_isAvailableVideo">
@@ -192,32 +220,8 @@
                </div>
             </div>
             
-         </div><!-- // candidature.presentation_video -->
-         
-         <div ng-if="candidature.presentation_video" class="" style="margin-top: 1em;">
-         
-            <p class="fr">Vous venez de déposer vos éléments visuels, merci d’en préciser la nature, le contexte et votre rôle.<br/></p>
-            <p class="en">You have just submitted your visual elements, please specify their nature, context and your role.<br/></p>
-            <textarea
-               ng-model="candidature.presentation_video_details"
-               ng-model-options='{ debounce: 1000 }'
-               ng-change="candidature.patch({presentation_video_details : candidature.presentation_video_details||''})"
-               placeholder=""
-               rows="6"
-               name="video-details"
-               required
-               >
-            </textarea>
-            <label for="video-details">
-               <span class="field-state required"></span>
-               <span class="fr">Contenus visuels</span>
-               <span class="en">Visuel content</span>
-            </label>
-
          </div>
-
-         
-
+      <!-- // candidature.presentation_video -->
       
 
    </form>
