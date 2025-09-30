@@ -25,6 +25,10 @@ $flag-icon-css-path: '../images/flags' !default;
   cursor: help;
 }
 
+.big{
+  font-size: 1.5em;
+}
+
 .icon{
   background-position: center center;
   background-repeat: no-repeat;
@@ -147,11 +151,32 @@ body {
   margin-top:20px;
 }
 
+/* import font recif */
+@font-face {
+    font-family: 'Recif';
+    src:url('./../fonts/recife/recife-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Recif';
+    src:url('./../fonts/recife/recife-regular-italic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Recif';
+    src:url('./../fonts/recife/recife-semi-bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
 
 
 .student-app{
     padding: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    // font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Recif", "Helvetica Neue", Helvetica, Arial, sans-serif;
     &.container-fluid {
       /* BUG */
       padding-right: 15px;
@@ -412,6 +437,14 @@ body {
               width: 40px;
               height: 40px;
               background: transparent url(../images/candidature/icons/check_false.svg) 0 0px no-repeat;
+            }
+            &.small{
+              padding-left: 30px;
+              &:before{
+                width: 20px;
+                height: 20px;
+                margin-top: -10px;
+              }
             }
           }
           &:checked + label:before {

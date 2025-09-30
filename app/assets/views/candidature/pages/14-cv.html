@@ -111,19 +111,43 @@
              <div class="modal show" ng-if="!item.label">
                 <div class="modal-content">
 
-                  <h2 class="fr">Veuillez entrer le titre du justificatif</h2>
-                     
-                    <p class="fr block">
-                     <small> Format Pays/ville + Type (école/Universite) + Titre du diplome
-                    <br/><small>Exemple : France Lyon - University - DNSEP Design d'espace</small></small> </p>
-                  <h2 class="en">Please enter the document title </h2>                  
-                  <p class="en block">
-                     <small>Format : Country/Town + Type (School/University) + degree title <br>
-                     <small>Example : US Chicago - University - Bachelor of Fine Arts</small></small>
+                  
+                  <h1 class="fr">Informations sur le justificatif</h1>
+                  <h1 class="en">Document Information</h1>
+                  <!-- FRENCH CUSRUS -->
+              
+
+                <div class="field">
+
+                  <p>
+                     <span class="fr">S'il s'agit d'un diplôme d'école d'art Français, veuillez le sélectionner dans la liste :  </span>
+                     <span class="en">This degree is from a French art school, please select it from the list: </span>
                   </p>
+
+                  <div>
+                     <select ng-model="french_art_cursus"
+                             name="uFrenchArtCursus"
+                             ng-change="label[$index] = french_art_cursus"       
+                             style="width: 100%; max-width: 350px;"              
+                     >
+                        <option value="" disabled selected>Selectionner un diplôme</option>
+                        <option
+                        ng-repeat="diploma in candidature_config.french_art_cursus"
+                        value="France {{diploma}} -">{{diploma}}</option>
+                        <option value="France ">Non présent dans cette liste</option>
+                     </select>
+                  </div>
+
+                 </div>
+                     
+                 
+                  <br/>
+                 
 
                <!-- INPUT -->
                <div class="field" >
+                  <h2 class="fr">Veuillez entrer le titre du justificatif</h2>
+                  <h2 class="en">Please enter the document title </h2>          
                   <input class="name no-border inline" type="text" placeholder="{{justificatif_placeholders[language]}}" 
                          ng-model="label[$index]" ng-change="" class="no-border" required />
 
@@ -132,64 +156,42 @@
                     <span class="fr">Titre</span>
                     <span class="en">Title</span>
                   </label>
+                   <p class="fr block">
+                     <small>Format : Pays/ville + Type (école/Universite) + Titre du diplôme
+                    <br/><small>Exemple : France Lyon - University - DNSEP Design d'espace</small></small> </p>
+                  <p class="en block">
+                     <small>Format: Country/Town + Type (School/University) + degree title <br>
+                     <small>Example: US Chicago - University - Bachelor of Fine Arts</small></small>
+                  </p>
 
                 </div>
 
                 <!-- CHECKBOX BAC + 5  -->
-                <div class="field">
+                <div class="field" ng-show="label[$index].length > 2 && candidature.master_degree=='Y'">
                   <input type="checkbox"
                     name="cmaster"
                     id="cmaster"
                     ng-model="description[$index]"
-                    ng-init="description[$index]=false"
+                    ng-init="description[$index]=''"
                     ng-true-value="'{{has_master_description}}'"
                     ng-false-value="''"
                     class="one check"
                   />
                   <label for="cmaster" class="one check pointer">
-                    <span class="fr">Ce diplôme atteste mon niveau baccalauréat +5 (Master 2) </span>
-                    <span class="en">This diploma shows that I have reached Master’s Degree (high school diploma + 5 years)</span>
+                    <span class="big fr">Ce diplôme atteste mon niveau baccalauréat +5 (Master 2) </span>
+                    <span class="big en">This diploma shows that I have reached Master’s Degree (high school diploma + 5 years)</span>
                   </label>
                 </div>
-
-                <div>
-                  
-               </div>
-
-                <!-- FRENCH CUSRUS -->
-                <div class="field">
-
-                  <p>
-                     <span class="fr">S'il s'agit d'un diplôme d'école d'art Français, veuillez le sélectionner dans la liste :  </span>
-                     <span class="en">If your degree is from a French art school, please select it from the list: </span>                  
-                  </p>
-
-                  <br/>
-
-                  <div  >
-                     <select ng-model="french_art_cursus"
-                             name="uFrenchArtCursus"
-                             ng-change="label[$index] = french_art_cursus"                     
-                     >
-                     <option value="" disabled selected>Selectionner un diplôme</option>
-                     <option
-                     ng-repeat="diploma in candidature_config.french_art_cursus"
-                     value="{{diploma}}">{{diploma}}</option>
-                     <option value="France ">Non présent dans cette liste</option>
-                  </select>
-                  </div>
-
-                 </div>
-
+               
                  <br/>
                  <br/>
-
 
                  <!--VALIDATION : Patch on validation AND on_complete_upload -->
                  <div class="btn green" ng-show="label[$index].length > 7"
-                        ng-click='item.label = label[$index];
-                                  item.description = ""+description[$index];
-                           item.patch({label: item.label, description:item.description, position: keyitem})'
+                        ng-click='item.label = label[$index]; 
+                                  item.description = description[$index];
+                                  item.patch({label: item.label, description:item.description, position: keyitem});
+                                  console.log(item);'
                    >
                         <span class="fr">Valider</span>
                         <span class="en">Confirm</span>

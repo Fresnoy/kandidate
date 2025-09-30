@@ -641,7 +641,7 @@ angular.module('candidature.controllers', ['candidature.services'])
       # clean values
       for item in array
         if(item)
-          arr.push(item.substring(0, item.indexOf("_")))
+          arr.push(item.substring(0, item.lastIndexOf("_")))
       # magic formule
       return arr.filter((item, index) => arr.indexOf(item) != index).length > 0
 
@@ -880,6 +880,10 @@ angular.module('candidature.controllers', ['candidature.services'])
 
       $scope.french_art_cursus = ""
       $scope.justificatif_placeholders = {en:"Document title",fr:"Titre du justificatif"}
+
+      $scope.updateCategory = (d) ->
+           console.log(d);
+      
  
       #patch Medium
       $scope.uploadFile = (data, model) ->

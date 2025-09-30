@@ -6,18 +6,49 @@
     <span class="fr">Inscriptions {{campaign.promotion.starting_year}}</span>
     <span class="en">Application {{campaign.promotion.starting_year}}</span>
   </h1>
-  <p class="fr">
+  <div class="fr">
+  <p>
     Les inscriptions au concours {{campaign.promotion.starting_year}} seront possibles à partir du <br/>
-    <strong>{{ campaign.candidature_date_start | date : "EEEE d MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }}</strong>.<br/>
+    <strong>{{ campaign.candidature_date_start | date : "EEEE d MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }}</strong> et jusqu'au 
+    <strong>{{ campaign.candidature_date_end | date : "EEEE d MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }}</strong>.<br/>
     Dans cette attente nous vous proposons de
     <a href="http://app.lefresnoy.net/candidatures/assets/procedure.php"
       target="_blank">
-      télécharger la procédure</a>
-    
+      télécharger la procédure</a>,
     qui vous donnera toutes les informations
-    afin de préparer votre inscription.
+    afin de préparer votre inscription.</p>
+    <p>
+      Rappel du calendrier : 
+    </p>
+      <ul class="list-unstyled">
+         
+        <li>› Portes ouvertes : <strong>{{ campaign.information_and_tour_date | no_timezone | date : "EEEE d MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }} précises (heure de Paris)</strong>.</li>
+         <li>› Présélection sur dossier, annonce des résultats le
+           <strong>{{ campaign.interviews_publish_date | date : "EEEE d MMMM yyyy" | translate_en_to_fr | lowercase }}</strong>
+         </li>
+         <li>› Entretiens oraux du
+            <strong>{{ campaign.interviews_start_date | date : "EEEE dd MMMM" | translate_en_to_fr | lowercase }}</strong>
+            au
+            <strong>{{ campaign.interviews_end_date | date : "EEEE dd MMMM yyyy" | translate_en_to_fr | lowercase }}</strong>
+         </li>
+         <li>
+            › Annonce des résultats le
+            <strong>{{ campaign.selected_publish_date | date : "EEEE dd MMMM yyyy" | translate_en_to_fr | lowercase }}</strong>
+          </li>
+      </ul>
+      <hr class="dashed"/>
+    <p>
+     Vous pouvez inscrire votre email pour être informé de l'ouverture des inscriptions
+    <i class="fa fa-envelope"></i>
+    <input type="email" style="border:none; width:200px; display:inline" placeholder="E-mail" ng-model="email"/>
+    <a ng-href="https://www.lefresnoy.net/newsletter/?news_email={{email}}&prefs=concours" class="btn" target="_blank" ng-click="subscribe(email)">S'inscrire</a>
+    <span ng-if="subscribed" style="color:green">Merci !</span>
   </p>
-  <p class="en">
+  </div>
+  
+  <hr class="dashed"/>
+  <div class="en">
+  <p>
     <span class="en">
     The {{campaign.promotion.starting_year}} applications process opens on <br/>
 
@@ -28,6 +59,30 @@
       
     to guide candidates through this procedure.
   </p>
+  <p>Schedule:</p>
+  <ul class="list-unstyled">
+         
+          <li>› Information and tour: <strong>{{ campaign.information_and_tour_date | no_timezone | date : "EEEE MMMM d, yyyy  'at' h a" }}, 
+            Paris time</strong>.</li>
+         <li>› 1st selection of applications.
+           List published online on
+            <strong>{{ campaign.interviews_publish_date | date : "EEEE MMMM d, yyyy" }}</strong>
+         </li>
+         <li>› Interviews, from
+           {{ campaign.interviews_start_date | date : "EEEE MMMM d" }} to
+           {{ campaign.interviews_end_date | date : "EEEE MMMM d, yyyy" }}.
+           List published online on
+           <strong>{{ campaign.selected_publish_date | date : "EEEE MMMM d, yyyy" }}</strong>.</li>
+      </ul>
+      <hr class="dashed"/>
+    <p>
+     Vous pouvez inscrire votre email pour être informé de l'ouverture des inscriptions
+    <i class="fa fa-envelope"></i>
+    <input type="email" style="border:none; width:200px; display:inline" placeholder="E-mail" ng-model="email"/>
+    <a ng-href="https://www.lefresnoy.net/newsletter/?news_email={{email}}&prefs=concours" class="btn" target="_blank" ng-click="subscribe(email)">S'inscrire</a>
+    <span ng-if="subscribed" style="color:green">Merci !</span>
+  </p>
+  </div>
 
    <div class="navigation">
      <a ng-if="campaign.candidature_open" class="btn prev" ui-sref="candidature"><span class="fr">Retour</span><span class="en">Back</span></a>
