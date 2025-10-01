@@ -86,7 +86,7 @@
          <p class="en">Please specify for each of the works presented in the video, the nature, the context and your precise role.<br/></p>
          <textarea
             ng-model="candidature.presentation_video_details"
-            ng-model-options='{ debounce: 1000 }'
+            ng-model-options='{ debounce: 300 }'
             ng-change="candidature.patch({presentation_video_details : candidature.presentation_video_details||''})"
             placeholder=""
             rows="6"
@@ -96,7 +96,7 @@
          </textarea>
          <label for="video-details">
             <span class="field-state required"></span>
-            <span class="fr">Contenus visuels</span>
+            <span class="fr">Contenus visuels <span ng-class="{'text-danger big': candidature.presentation_video_details.length > 560}">{{candidature.presentation_video_details.length}}</span>/560 caractères</span>
             <span class="en">Visuel content</span>
          </label>
 
