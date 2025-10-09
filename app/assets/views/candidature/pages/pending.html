@@ -22,26 +22,34 @@
     </p>
       <ul class="list-unstyled">
          
-        <li>› Portes ouvertes : <strong>{{ campaign.information_and_tour_date | no_timezone | date : "EEEE d MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }} précises (heure de Paris)</strong>.</li>
-         <li>› Présélection sur dossier, annonce des résultats le
-           <strong>{{ campaign.interviews_publish_date | date : "EEEE d MMMM yyyy" | translate_en_to_fr | lowercase }}</strong>
+        <li>› Date limite d’inscription et de dépôt du dossier artistique en ligne : 
+           <strong>{{ campaign.candidature_date_end | no_timezone | date : "EEEE d MMMM" | translate_en_to_fr | lowercase }}</strong>.</li>
+         <li>› Portes ouvertes : <strong>{{ campaign.information_and_tour_date | no_timezone | date : "EEEE d MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }} précises (heure de Paris)</strong>.</li>
+         <li>› Présélection sur dossier, annonce des résultats :
+           <strong>{{ campaign.interviews_publish_date | date : "EEEE d MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }}</strong>
          </li>
-         <li>› Entretiens oraux du
+         <li>› Entretiens oraux du 
             <strong>{{ campaign.interviews_start_date | date : "EEEE dd MMMM" | translate_en_to_fr | lowercase }}</strong>
             au
             <strong>{{ campaign.interviews_end_date | date : "EEEE dd MMMM yyyy" | translate_en_to_fr | lowercase }}</strong>
          </li>
-         <li>
-            › Annonce des résultats le
-            <strong>{{ campaign.selected_publish_date | date : "EEEE dd MMMM yyyy" | translate_en_to_fr | lowercase }}</strong>
+         <li>› Annonce des résultats :
+            <strong>{{ campaign.selected_publish_date | date : "EEEE dd MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }}</strong>
           </li>
       </ul>
       <hr class="dashed"/>
     <p>
-     Vous pouvez inscrire votre email pour être informé de l'ouverture des inscriptions
-    <i class="fa fa-envelope"></i>
-    <input type="email" style="border:none; width:200px; display:inline" placeholder="E-mail" ng-model="email"/>
-    <a ng-href="https://www.lefresnoy.net/newsletter/?news_email={{email}}&prefs=concours" class="btn" target="_blank" ng-click="subscribe(email)">S'inscrire</a>
+     Vous pouvez inscrire votre email pour être informé de l'ouverture des inscriptions<br/>
+     <div class="input-group">
+        <span class="input-group-addon" style="background-color: black; color: white;">
+            <i class="glyphicon glyphicon-envelope"></i>
+        </span>
+  
+        <input class="form-control" type="email" placeholder="E-mail" ng-model="email"/>
+        <a class="input-group-addon" style="background-color: black; color: white;"
+         ng-href="https://www.lefresnoy.net/newsletter/?news_email={{email}}&prefs=concours" 
+         target="_blank" ng-click="subscribe(email)">S'inscrire</a>
+     </div>
     <span ng-if="subscribed" style="color:green">Merci !</span>
   </p>
   </div>
@@ -61,27 +69,34 @@
   </p>
   <p>Schedule:</p>
   <ul class="list-unstyled">
-         
+           <li>› Deadline for registration and submission of artistic portfolio online:
+          <strong>{{ campaign.candidature_date_end | no_timezone  | date : "EEEE d MMMM, yyyy" }}, Paris time</strong>.</li>
           <li>› Information and tour: <strong>{{ campaign.information_and_tour_date | no_timezone | date : "EEEE MMMM d, yyyy  'at' h a" }}, 
             Paris time</strong>.</li>
-         <li>› 1st selection of applications.
-           List published online on
-            <strong>{{ campaign.interviews_publish_date | date : "EEEE MMMM d, yyyy" }}</strong>
+         <li>› Results of the preselection procedure:
+            <strong>{{ campaign.interviews_publish_date | date : "EEEE MMMM d, yyyy 'at' h a" }}</strong>
          </li>
-         <li>› Interviews, from
+         <li>› Interviews, from <strong>
            {{ campaign.interviews_start_date | date : "EEEE MMMM d" }} to
-           {{ campaign.interviews_end_date | date : "EEEE MMMM d, yyyy" }}.
-           </li>
-         <li>› List published online on
-           <strong>{{ campaign.selected_publish_date | date : "EEEE MMMM d, yyyy" }}</strong>.</li>
+           {{ campaign.interviews_end_date | date : "EEEE MMMM d, yyyy" }}</strong>.
+         </li>
+         <li>› Results of the selection procedure:
+           <strong>{{ campaign.selected_publish_date | date : "EEEE MMMM d, yyyy 'at' h a" }}</strong>.</li>
       </ul>
       <hr class="dashed"/>
-    <p>
-     Vous pouvez inscrire votre email pour être informé de l'ouverture des inscriptions
-    <i class="fa fa-envelope"></i>
-    <input type="email" style="border:none; width:200px; display:inline" placeholder="E-mail" ng-model="email"/>
-    <a ng-href="https://www.lefresnoy.net/newsletter/?news_email={{email}}&prefs=concours" class="btn" target="_blank" ng-click="subscribe(email)">S'inscrire</a>
-    <span ng-if="subscribed" style="color:green">Merci !</span>
+    <p>You can subscribe with your email to be informed when registration opens<br/>
+    <div class="input-group">
+        <span class="input-group-addon" style="background-color: black; color: white;">
+            <i class="glyphicon glyphicon-envelope"></i>
+        </span>
+  
+        <input class="form-control" type="email" placeholder="E-mail" ng-model="email"/>
+        <a class="input-group-addon" style="background-color: black; color: white;"
+         ng-href="https://www.lefresnoy.net/newsletter/?news_email={{email}}&prefs=concours" 
+         target="_blank" ng-click="subscribe(email)">Subscribe</a>
+     </div>
+  
+    <span ng-if="subscribed" style="color:green">Thank you!</span>
   </p>
   </div>
 

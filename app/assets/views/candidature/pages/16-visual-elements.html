@@ -1,6 +1,6 @@
 <div class="help-pane" ng-show='display_help' ng-init="show_help(false)">
    <span class="close" ng-click="show_help(false)">x</span>
-   <h1><class class="fr">Aide</class><class class="en">Help</class></h1>
+   <h1><class class="fr"> Consignes pour la vidéo </class><class class="en">Video Instructions</class></h1>
    <div class="fr">
           <p>La vidéo doit représenter une œuvre ou un ensemble d’extraits d’œuvres
     réalisés par le, la candidat·e et lui paraissant
@@ -52,12 +52,12 @@
       </h1>
       <form name="form1" ng-submit="form.$valid && submit()" class="css-form" novalidate>
       <div class="fr">
-         <p>Merci de déposer une <a class="pointer" ng-click="show_help(true)">vidéo</a> mettant en lumière une œuvre ou un ensemble 
-            d’extraits d’œuvres que vous avez réalisées et particulièrement représentatifs de votre démarche artistique. 
+         <p>
+            Merci de déposer une <a class="pointer" ng-click="show_help(true)">vidéo</a> mettant en lumière une œuvre (ou un ensemble d’extraits d’œuvres) 
+            que vous avez réalisée et qui vous semble particulièrement représentative de votre démarche artistique.  
          </p>
-         <p>Cette vidéo d'une <strong>durée maximale de 8 minutes</strong> sera vue successivement par 
-            le jury de présélection et de l'entretien oral.</p>
-         <p>Voir l'<a class="pointer" ng-click="show_help(true)">aide pour plus d'information sur la vidéo à fournir</a>.</p>
+         <p>Cette vidéo d’une <strong>durée maximale de 8 minutes</strong> sera vue successivement par le jury de préselection puis par le jury de l’entretien oral. </p>
+         <p><a class="pointer" ng-click="show_help(true)">Consignes relatives à la vidéo à fournir</a></p>
          
 
       </div>
@@ -65,7 +65,7 @@
          <p>Submit a <a class="pointer" ng-click="show_help(true)">video</a> that showcases the most representative part of your work.</p>
          <p>This video, with a <strong>maximum length of 8 minutes</strong> will be viewed twice: once by the pre-selection 
             jury and a second time by the interview jury.</p>
-         <p>See <a class="pointer" ng-click="show_help(true)">“help” for more information about the link to be provided</a>.</p>
+         <p><a class="pointer" ng-click="show_help(true)">Instructions regarding the video to be provided </a></p>
       </div>
 
       <blockquote>
@@ -76,7 +76,7 @@
 
          <p class="en"><strong>Note: </strong><br>
             The pre-selection jury will have access to this video along with all other elements of your application (statement of intent, CV, etc.).
-            If you are preselected, this video will be the sole document shown during the oral interview. The jury will not have knowledge of other elements in your application.
+            If you are preselected, this video will be the only document shown during the oral interview. The jury will not have knowledge of other elements in your application.
          </p>          
       </blockquote>
 
@@ -97,7 +97,7 @@
          <label for="video-details">
             <span class="field-state required"></span>
             <span class="fr">Contenus visuels <span ng-class="{'text-danger big': candidature.presentation_video_details.length > 560}">{{candidature.presentation_video_details.length}}</span>/560 caractères</span>
-            <span class="en">Visuel content</span>
+            <span class="en">Visual content <span ng-class="{'text-danger big': candidature.presentation_video_details.length > 560}">{{candidature.presentation_video_details.length}}</span>/560 characters</span>
          </label>
 
       </div>
@@ -108,7 +108,7 @@
             <div >
                <h4>
                   <span class="fr">Téléverser votre vidéo</span>
-                  <span class="en">Upload your vidéo</span>
+                  <span class="en">Upload your video</span>
 
                </h4>
                <br/>

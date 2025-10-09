@@ -28,17 +28,15 @@
       </p>
       <ul>
          
-         <li>Dossier de candidature (inscription administrative et dossier artistique), enregistrement en ligne, au plus tard le
-           <strong>{{ campaign.candidature_date_end | no_timezone | date : "EEEE d MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }}, heure de Paris</strong>.
+         <li>Date limite d’inscription et de dépôt du dossier artistique en ligne : 
+           <strong>{{ campaign.candidature_date_end | no_timezone | date : "EEEE d MMMM" | translate_en_to_fr | lowercase }}</strong>.<br>
            Un mail de confirmation de votre inscription vous sera adressé à la fin de la procédure d’enregistrement de votre candidature, 
            il est indispensable pour sa validation.<br>
-         
-         
            <em>Pensez à anticiper la finalisation de votre candidature pour éviter tout problème technique de dernière minute</em>.
          </li>
          <li>Portes ouvertes : <strong>{{ campaign.information_and_tour_date | no_timezone | date : "EEEE d MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }} précises (heure de Paris)</strong>.</li>
-         <li>Présélection sur dossier, annonce des résultats le
-           <strong>{{ campaign.interviews_publish_date | date : "EEEE d MMMM yyyy" | translate_en_to_fr | lowercase }}</strong>
+         <li>Présélection sur dossier, annonce des résultats :
+           <strong>{{ campaign.interviews_publish_date | date : "EEEE d MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }}</strong>
          </li>
          <li>Entretiens oraux du 
             <strong>{{ campaign.interviews_start_date | date : "EEEE dd MMMM" | translate_en_to_fr | lowercase }}</strong>
@@ -46,31 +44,31 @@
             <strong>{{ campaign.interviews_end_date | date : "EEEE dd MMMM yyyy" | translate_en_to_fr | lowercase }}</strong>
          </li>
          <li>
-            Annonce des résultats le
-            <strong>{{ campaign.selected_publish_date | date : "EEEE dd MMMM yyyy" | translate_en_to_fr | lowercase }}</strong>
+            Annonce des résultats :
+            <strong>{{ campaign.selected_publish_date | date : "EEEE dd MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }}</strong>
           </li>
       </ul>
    </div>
    <div class="en">
       <p>The selection process is annual; it will take place according to the following schedule:</p>
       <ul>
-         <li>Administrative registration and dispatch of artistic dossier on<br/>
-          <strong>{{ campaign.candidature_date_end | no_timezone  | date : "EEEE MMMM d, yyyy  'at' h a" }}, Paris time</strong>.
+         <li>Deadline for registration and submission of artistic portfolio online:
+          <strong>{{ campaign.candidature_date_end | no_timezone  | date : "EEEE d MMMM, yyyy" }}, Paris time</strong>.
           An email confirming your registration will be sent to you at the end of the registration procedure for your application,
           it is essential for its validation.
+          <em>Remember to finalize your application early to avoid any last-minute technical issues.</em>.
           </li>
           <li>Information and tour: <strong>{{ campaign.information_and_tour_date | no_timezone | date : "EEEE MMMM d, yyyy  'at' h a" }}, 
             Paris time</strong>.</li>
-         <li>1st selection of applications.
-           List published online on
-            <strong>{{ campaign.interviews_publish_date | date : "EEEE MMMM d, yyyy" }}</strong>
+         <li>Results of the preselection procedure:
+            <strong>{{ campaign.interviews_publish_date | date : "EEEE MMMM d, yyyy 'at' h a" }}</strong>
          </li>
-         <li>Interviews, from
+         <li>Interviews, from <strong>
            {{ campaign.interviews_start_date | date : "EEEE MMMM d" }} to
-           {{ campaign.interviews_end_date | date : "EEEE MMMM d, yyyy" }}.
+           {{ campaign.interviews_end_date | date : "EEEE MMMM d, yyyy" }}</strong>.
          </li>
-         <li>List published online on
-           <strong>{{ campaign.selected_publish_date | date : "EEEE MMMM d, yyyy" }}</strong>.</li>
+         <li>Results of the selection procedure:
+           <strong>{{ campaign.selected_publish_date | date : "EEEE MMMM d, yyyy 'at' h a" }}</strong>.</li>
       </ul>
    </div>
    <div class="navigation">

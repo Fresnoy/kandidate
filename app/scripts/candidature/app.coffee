@@ -45,6 +45,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
                     templateUrl: 'views/candidature/pages/01-landing-page.html',
                     controller: ($rootScope) ->
                       $rootScope.step.current = "01"
+                      $rootScope.help_exist = false
                       # this is first page !
                       # load infos if candidat has token on the first page
                       if($rootScope.isAuthenticated)
@@ -64,6 +65,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/faq.html',
                         controller: ($rootScope) ->
+                          $rootScope.help_exist = false
                           $rootScope.step.current = "faq"
       )
       # PAGE - Error

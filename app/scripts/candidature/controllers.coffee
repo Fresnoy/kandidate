@@ -418,6 +418,18 @@ angular.module('candidature.controllers', ['candidature.services'])
   # countries
   $rootScope.getCountrie = (code) ->
     return _.invert(ISO3166.countryToCode)[code]
+  
+  # native JS function to get country/language name from code
+  $scope.getCountryName = (code, type, locale) ->
+    
+    try
+      regionNames = new (Intl.DisplayNames)([ locale ], type: type)
+      return regionNames.of(code)
+    catch error
+      console.error 'Erreur lors de la récupération du nom du pays:', error
+      return code
+      # Retourne le code en cas d'erreur
+    return
 
 
   # logout
@@ -727,7 +739,7 @@ angular.module('candidature.controllers', ['candidature.services'])
       # emulate error to display as input date
       $scope.form1.uBirthDate.$error = error
       $scope.form1.uBirthDate.$validate()
-
+      
       return transform
 
   $rootScope.loadInfos($rootScope)
@@ -747,6 +759,28 @@ angular.module('candidature.controllers', ['candidature.services'])
     if(newValue)
       $scope.birthdateMin = $filter('date')(new Date($rootScope.campaign.date_of_birth_max), 'yyyy-MM-dd')
   )
+
+  # preferred name
+  $scope.$watchGroup(["artist.nickname", "user.profile.preferred_first_name"], (newValues, oldValues) ->
+        newValue = newValues[0] || newValues[1]
+        if(newValue)
+          $scope.alternative_name = ''
+          if ($scope.artist.nickname && $scope.artist.nickname.length>0)
+            $scope.alternative_name = 'nickname'
+        
+          if ($scope.user.profile.preferred_first_name != "" || $scope.user.profile.preferred_last_name != "")
+            $scope.alternative_name = 'usage'        
+  )
+  $scope.changeAlternative = () ->
+    current = $scope.alternative_name
+    console.log(current)
+    if(current == "usage")
+      $scope.artist.nickname = "";
+      $scope.artist.patch({'nickname': $scope.artist.nickname})
+    if(current == "nickname")
+      $scope.user.profile.preferred_first_name = $scope.user.profile.preferred_last_name = ""
+      $scope.user.patch({'profile':{'preferred_last_name': $scope.user.profile.preferred_last_name} })
+      $scope.user.patch({'profile':{'preferred_first_name': $scope.user.profile.preferred_first_name} })
 
   # Gender
   $scope.gender =

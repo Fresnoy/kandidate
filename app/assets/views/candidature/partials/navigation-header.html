@@ -18,11 +18,16 @@
   </div>
   <ul class="list-inline small">
     <li class="help"><a class="pointer" ui-sref="candidature"><span class='glyphicon glyphicon-home'></span></a> |</li>
-    <li class="help"><a class="pointer" ui-sref="candidature.user-guide"><span class='fr'>Guide</span><span class='en'>User guide</span></a> |</li>
-    <li class="help"><a class="pointer" ui-sref="candidature.faq">FAQ</a> | </li>
-    <li class="help"><a href="https://goo.gl/forms/FEBMd0Idb5UqSPix2" target="_blank">Bug ?</a> | </li>
-    <li class="help"><a class="pointer"  ng-click="setLang('fr')" >FR</a> |</li>
-    <li class="help"><a class="pointer" ng-click="setLang('en')" >EN</a> |</li>
+    <li class="help"><a class="pointer" target="_blank" ui-sref="candidature.user-guide">
+        <span class='fr'>Guide</span><span class='en'>User guide</span></a> |</li>
+    <li class="help"><a class="pointer" target="_blank" ui-sref="candidature.faq">FAQ</a> | </li>
+    <li class="help">
+      <a class="fr" href="https://forms.gle/jjyJaRnm7aCAE8gw9" target="_blank">Signaler un bug</a>
+      <a class="en"  href="https://forms.gle/Q29ktcubMX5jHXYB6" target="_blank">Report a bug</a>
+      
+      | </li>
+    <li class="help en"><a class="pointer"  ng-click="setLang('fr')" >FR</a> |</li>
+    <li class="help fr"><a class="pointer" ng-click="setLang('en')" >EN</a> |</li>
     <li class="help" ng-show="help_exist"><a class="pointer" ng-click="show_help(true)">
                             <span class='fr'>Aide</span>
                             <span class='en'>Help</span></a>|</li>
