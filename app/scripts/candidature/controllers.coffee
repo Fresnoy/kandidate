@@ -761,26 +761,43 @@ angular.module('candidature.controllers', ['candidature.services'])
   )
 
   # preferred name
-  $scope.$watchGroup(["artist.nickname", "user.profile.preferred_first_name"], (newValues, oldValues) ->
-        newValue = newValues[0] || newValues[1]
+  $scope.$watchGroup(["artist.nickname", "user.profile.preferred_first_name", "user.profile.preferred_last_name"], (newValues, oldValues) ->
+        newValue = newValues[0] || newValues[1] || newValues[2]
         if(newValue)
           $scope.alternative_name = ''
           if ($scope.artist.nickname && $scope.artist.nickname.length>0)
             $scope.alternative_name = 'nickname'
         
           if ($scope.user.profile.preferred_first_name != "" || $scope.user.profile.preferred_last_name != "")
-            $scope.alternative_name = 'usage'        
+            $scope.alternative_name = 'usage'
+            console.log("usage")
+          
+          $scope.alternative_name_old = $scope.alternative_name
   )
+  
   $scope.changeAlternative = () ->
     current = $scope.alternative_name
-    console.log(current)
-    if(current == "usage")
-      $scope.artist.nickname = "";
-      $scope.artist.patch({'nickname': $scope.artist.nickname})
-    if(current == "nickname")
-      $scope.user.profile.preferred_first_name = $scope.user.profile.preferred_last_name = ""
-      $scope.user.patch({'profile':{'preferred_last_name': $scope.user.profile.preferred_last_name} })
-      $scope.user.patch({'profile':{'preferred_first_name': $scope.user.profile.preferred_first_name} })
+
+    # toggle off: clear both artist nickname and preferred names
+    if current == $scope.alternative_name_old
+      $scope.alternative_name = $scope.alternative_name_old = ""
+      $scope.artist.nickname = $scope.user.profile.preferred_first_name = $scope.user.profile.preferred_last_name = ""
+      $scope.artist.patch({nickname: ""})
+      $scope.user.patch(profile: {preferred_first_name: "", preferred_last_name: ""})
+      return
+
+    # switching to usage: remove artist nickname
+    if current == "usage"
+      $scope.artist.nickname = ""
+      $scope.artist.patch({nickname: ""})
+
+    # switching to nickname: remove preferred names
+    if current == "nickname"
+      $scope.user.profile.preferred_first_name = ""
+      $scope.user.profile.preferred_last_name = ""
+      $scope.user.patch(profile: {preferred_first_name: "", preferred_last_name: ""})
+
+    $scope.alternative_name_old = current
 
   # Gender
   $scope.gender =
