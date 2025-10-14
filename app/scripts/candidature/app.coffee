@@ -29,10 +29,8 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
                                                                       $stateProvider,
                                                                       $urlRouterProvider) ->
       $locationProvider.html5Mode(config.useHtml5Mode)
-      $urlRouterProvider.otherwise("")
-
-
-
+      # bug with ui-router : force redirect to an valid page
+      $urlRouterProvider.when('/', 'terms-of-access')
       # - CANDIDATURE Root
       $stateProvider.state('candidature',
               url: ''
@@ -367,7 +365,8 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
                           # hide breadcrumb
                           template: '',
 
-        )
+      )
+      
 
 
 ])
