@@ -8,7 +8,7 @@
   </h1>
   <div class="fr">
   <p>
-    Les inscriptions au concours {{campaign.promotion.starting_year}} seront possibles à partir du <br/>
+    Les inscriptions au concours {{campaign.promotion.starting_year}} seront possibles à partir du
     <strong>{{ campaign.candidature_date_start | date : "EEEE d MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }}</strong> et jusqu'au 
     <strong>{{ campaign.candidature_date_end | date : "EEEE d MMMM yyyy à HH'h'" | translate_en_to_fr | lowercase }}</strong>.<br/>
     Dans cette attente nous vous proposons de
@@ -60,7 +60,8 @@
     <span class="en">
     The {{campaign.promotion.starting_year}} applications process opens on <br/>
 
-    <strong>{{ campaign.candidature_date_start | date : "EEEE MMMM d, yyyy 'at' h a" }}</strong>.<br/>
+    <strong>{{ campaign.candidature_date_start | date : "EEEE MMMM d, yyyy 'at' h a" }}</strong> until
+    <strong>{{ campaign.candidature_date_end | date : "EEEE d MMMM yyyy 'at' h a" }}</strong>.<br/>
     A full information pack can be
     <a href="http://app.lefresnoy.net/candidatures/assets/procedure.php"
       target="_blank">  downloaded</a>

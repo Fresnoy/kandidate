@@ -78,7 +78,7 @@
          <p class="fr">Si besoin, sélectionnez au choix : </p>
          <p class="en">If necessary, select one of the options:</p>
          <input type="radio" id="usage-name" ng-model="alternative_name" ng-value="'usage'"
-               name="alternateName" class="one  small check" 
+               name="alternateName" class="one small check" 
                ng-click="changeAlternative()" />
             <label for="usage-name" class="checkbox small one pointer">
                <span class="fr">Nom et prénom d’usage</span>
@@ -211,7 +211,7 @@
                ng-model="user.profile.birthplace_country"
                name="uBirthCountry" required>
                <option value="">-- Select a Country --</option>
-               <option ng-repeat="(country,code) in countries" value="{{code}}">{{country}}</option>
+               <option ng-repeat="(country,code) in countries" value="{{code}}">{{getCountryName(code, "region", language)}}</option>
             </select>
             <div ng-show="form1.uBirthCountry.$touched && form1.uBirthCountry.$invalid" ng-messages="form1.uBirthCountry.$error" class="help-block error">
                <div ng-message="required">

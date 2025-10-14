@@ -1092,22 +1092,24 @@ angular.module('candidature.controllers', ['candidature.services'])
 
         # POLL
         $scope.rPoll = ""
+        $scope.otherPoll = {item: ""}
         pollRegexp = /(\[POLL\])(.*)(\[\/POLL\])/gi
         $scope.pollChange = (obj, candidature) ->
             remark = candidature.remark
             new_remark = ""
             exist = pollRegexp.test(remark)
+            text = obj.item
             # if exist
             # change de content
             if(exist)
-              new_remark = remark.replace(pollRegexp, "$1"+obj.item+"$3")
+              new_remark = remark.replace(pollRegexp, "$1"+text+"$3")
             # else create it
             else 
               new_remark = if candidature.remark then candidature.remark else ""              
               # # make some lines              
-              # make some lin             
+              # make some lines
               new_remark +="\n\n"
-              new_remark +="[POLL]"+obj.item+"[/POLL]"
+              new_remark +="[POLL]"+text+"[/POLL]"
             # set remark
             candidature.remark = new_remark
             candidature.patch({remark: candidature.remark})
@@ -1120,7 +1122,14 @@ angular.module('candidature.controllers', ['candidature.services'])
             if(match)
               # split [POLL]value[/POLL] to ke
               split = match[0].split(/(\[|\])/)
-              $scope.rPoll = split[4] 
+              value = split[4]
+              # test if rpoll is in list
+              exist = false
+              if( !$rootScope.candidature_config.communication.poll['fr'].items.includes(value) && !$rootScope.candidature_config.communication.poll['en'].items.includes(value))
+                $scope.rPoll = if $scope.language == 'fr' then "Autre" else "Other"
+                $scope.otherPoll.item = value
+              else
+                $scope.rPoll = value
               
         )
             

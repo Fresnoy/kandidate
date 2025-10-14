@@ -38,6 +38,15 @@
                />
          <label for="poll-{{language}}-{{$index}}" class="checkbox one pointer">{{item}}</label>   
       </div>
+      <div ng-show="rPoll === 'Other' || rPoll === 'Autre'">
+         <input id="other-poll" type="text" ng-change="pollChange(otherPoll, candidature)" ng-model-options='{ debounce: 500 }'
+         ng-model="otherPoll.item" 
+         placeholder="Veuillez préciser" />
+         <label for="otherpoll">
+            <span class="fr">Autre</span>
+            <span class="en">Other</span>
+         </label>
+      </div>
    </div>
    
 
@@ -75,7 +84,7 @@
       <label for="final_validation" class="one check pointer">
         <span class="fr">Je valide définitivement ma candidature au concours
                   {{campaign.promotion.starting_year}}
-              du Fresnoy – studio national et je déclare sur l’honneur que je suis l’auteur.trice de toutes les œuvres présentées dans mon dossier.
+              du Fresnoy – Studio national et je déclare sur l’honneur que je suis l’auteur·trice de toutes les œuvres présentées dans mon dossier.
             </span>
 
         <span class="en">I hereby confirm my application to
