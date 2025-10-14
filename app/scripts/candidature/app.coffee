@@ -29,11 +29,12 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
                                                                       $stateProvider,
                                                                       $urlRouterProvider) ->
       $locationProvider.html5Mode(config.useHtml5Mode)
+      console.log("location", window.location)
       # bug with ui-router : force redirect to an valid page
-      $urlRouterProvider.when('/', 'terms-of-access')
+      $urlRouterProvider.when('', '/')
       # - CANDIDATURE Root
       $stateProvider.state('candidature',
-              url: ''
+              url: '/'
               views:
                 'main_view':
                   templateUrl: 'views/candidature/index.html',
@@ -58,7 +59,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # PAGE - FAQ
       $stateProvider.state('candidature.faq',
-                url: '/frequently-asked-questions'
+                url: 'frequently-asked-questions'
                 views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/faq.html',
@@ -68,7 +69,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # PAGE - Error
       $stateProvider.state('candidature.error',
-                url: '/error'
+                url: 'error'
                 views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/error.html',
@@ -77,7 +78,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # PAGE - User Guide
       $stateProvider.state('candidature.user-guide',
-                url: '/user-guide'
+                url: 'user-guide'
                 views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/user-guide.html',
@@ -86,14 +87,14 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # PAGE - Error ADMIN can't create application
       $stateProvider.state('candidature.error_admin_user',
-                url: '/error_admin'
+                url: 'error_admin'
                 views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/error_admin.html',
       )
       # PAGE - CANDIDATURE - Expired
       $stateProvider.state('candidature.expired',
-                url: '/expired'
+                url: 'expired'
                 views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/expired.html',
@@ -102,7 +103,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # PAGE - CANDIDATURE - en attente
       $stateProvider.state('candidature.pending',
-                url: '/pending'
+                url: 'pending'
                 views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/pending.html',
@@ -111,7 +112,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ACCOUNT
       $stateProvider.state('candidature.account',
-                url: '/account'
+                url: 'account'
                 views:
                   'application_content_view':
                       templateUrl: 'views/candidature/account/index.html'
@@ -163,7 +164,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
 
       # ONLINE CANDIDATURE - 02 - Terms of access
       $stateProvider.state('candidature.terms-of-access',
-                  url: '/terms-of-access'
+                  url: 'terms-of-access'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/02-terms-of-access.html',
@@ -174,7 +175,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 03 - Terms of access
       $stateProvider.state('candidature.terms-of-access-2',
-                  url: '/terms-of-access-suite'
+                  url: 'terms-of-access-suite'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/03-terms-of-access-2.html',
@@ -184,7 +185,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 08 - Options
       $stateProvider.state('candidature.options',
-                  url: '/options'
+                  url: 'options'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/08-inscription-options.html',
@@ -192,7 +193,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 09 - ADMINSISTRATIVE INFOS
       $stateProvider.state('candidature.administrative-informations',
-                  url: '/administrative-informations'
+                  url: 'administrative-informations'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/09-administrative-informations.html',
@@ -200,7 +201,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 10 - CONTACT INFOS
       $stateProvider.state('candidature.contact-informations',
-                  url: '/contact-informations'
+                  url: 'contact-informations'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/10-contact-informations.html',
@@ -208,7 +209,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 11 - LANGUAGES INFOS
       $stateProvider.state('candidature.spoken-languages',
-                  url: '/languages'
+                  url: 'languages'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/11-spoken-languages.html',
@@ -216,7 +217,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 12 - PHOTOGRAPHY
       $stateProvider.state('candidature.photography',
-                  url: '/photography'
+                  url: 'photography'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/12-photography.html',
@@ -224,7 +225,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 13 - Cursus
       $stateProvider.state('candidature.curiculum',
-                  url: '/cursus'
+                  url: 'cursus'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/13-curiculum.html',
@@ -235,7 +236,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 14 - cv
       $stateProvider.state('candidature.cv',
-                  url: '/cv'
+                  url: 'cv'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/14-cv.html',
@@ -244,7 +245,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 15 - Parcours  Artistique
       $stateProvider.state('candidature.artistic-background',
-                  url: '/artistics'
+                  url: 'artistics'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/15-artistic-background.html',
@@ -253,7 +254,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 16 - Elements visuels
       $stateProvider.state('candidature.visual-elements',
-                  url: '/video'
+                  url: 'video'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/16-visual-elements.html',
@@ -261,7 +262,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 17 - Candidatres precedents
       $stateProvider.state('candidature.previous-applications',
-                  url: '/previous-applications'
+                  url: 'previous-applications'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/17-previous-applications.html',
@@ -269,7 +270,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 18 - Motivations
       $stateProvider.state('candidature.motivations',
-                  url: '/motivations'
+                  url: 'motivations'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/18-motivations.html',
@@ -279,7 +280,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 19 - DUO
       $stateProvider.state('candidature.duo',
-                  url: '/duo'
+                  url: 'duo'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/19-duo.html',
@@ -304,7 +305,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 20 - Projet 1
       $stateProvider.state('candidature.intentions-projects',
-                  url: '/projects'
+                  url: 'projects'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/20-intentions-projects.html',
@@ -315,7 +316,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
 
       # ONLINE CANDIDATURE - 22 - Doctorate
       $stateProvider.state('candidature.doctorate',
-                  url: '/doctorate'
+                  url: 'doctorate'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/21-doctorate.html',
@@ -325,7 +326,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 22 - Summary
       $stateProvider.state('candidature.summary',
-                  url: '/summary'
+                  url: 'summary'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/22-summary.html',
@@ -335,7 +336,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 23 - ITW
       $stateProvider.state('candidature.interview',
-                  url: '/interview'
+                  url: 'interview'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/23-interview.html',
@@ -346,7 +347,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
       # ONLINE CANDIDATURE - 23 - Finalization
       $stateProvider.state('candidature.finalization',
-                  url: '/finalization'
+                  url: 'finalization'
                   views:
                     'application_content_view':
                         templateUrl: 'views/candidature/pages/24-finalization.html',
@@ -354,7 +355,7 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
       )
         # ONLINE CANDIDATURE - 24 - Confirmation
       $stateProvider.state('candidature.confirmation',
-                    url: '/confirmation'
+                    url: 'confirmation'
                     views:
                       'application_content_view':
                           templateUrl: 'views/candidature/pages/25-confirmed.html',
