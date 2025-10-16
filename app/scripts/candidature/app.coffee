@@ -292,15 +292,13 @@ angular.module('candidature.application', ['candidature.controllers', 'candidatu
                             $scope.application_users = []
                             # try to hide current user
                             candidatsWithoutCurrentUser = _.reject(candidats, (c) -> return c.id == $rootScope.user.id)
-                            for c in candidatsWithoutCurrentUser                              
-                              $scope.application_users.push({name:c.first_name + " " + c.last_name})
+                            for c in candidatsWithoutCurrentUser
+                              name = if c.profile.preferred_first_name and c.profile.preferred_last_name
+                                "#{c.profile.preferred_first_name} #{c.profile.preferred_last_name} (#{c.first_name} #{c.last_name})"
+                              else
+                                "#{c.first_name} #{c.last_name}"
+                              $scope.application_users.push({name:name})
                           )
-
-                            
-
-
-
-
 
       )
       # ONLINE CANDIDATURE - 20 - Projet 1
