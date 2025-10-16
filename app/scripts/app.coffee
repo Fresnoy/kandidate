@@ -168,6 +168,7 @@ angular.module('candidature', ['candidature.application',
               'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
               'months', 'month', 'days', 'day', 'hours', 'hour', 'seconds', 'second', 
               '01', '02', '03', '04', '05', '06', '07', '08', '09',
+              '1',
               # space by alt 160 
               'Media creation', "Media upload", "Request for upload permissions", "Video upload", "Video sent, please wait a few more moments",
               "Update application information", "Moving the video", "Video added !"
@@ -176,7 +177,8 @@ angular.module('candidature', ['candidature.application',
               'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre',
               'Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi',
               'mois', 'mois', 'jours', 'jour', 'heures', 'heure', 'secondes', 'seconde', 
-              '1er', '02', '03', '04', '05', '06', '07', '08', '09',
+              '1ᵉʳ', '02', '03', '04', '05', '06', '07', '08', '09',
+              '1ᵉʳ',
               'Création du média', "Téléversement du média", "Demande d'autorisations", "Téléversement de la vidéo", "Vidéo envoyée, veuillez patienter encore quelques instant",
               "Mise à jour des informations de candidature", "Déplacement de la vidéo", "Vidéo correctement ajoutée"
           ]

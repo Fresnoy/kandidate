@@ -5,11 +5,10 @@
       <span class="en">Finalisation</span>
    </h1>
    <p class="fr">
-      Pour toutes précisions, ou remarques vous pouvez nous laisser un message ci-dessous et nous dire comment avez
-      vous connu Le Fresnoy :
+      Pour toutes précisions ou remarques, vous pouvez nous laisser un message ci-dessous. 
    </p>
    <p class="en">
-     For any further information, you can leave us a message below and tell us how you knew Le Fresnoy:
+      For any further details or remarks, you can leave us a message below.
    </p>
    <textarea
       id="remark"
@@ -39,6 +38,15 @@
                />
          <label for="poll-{{language}}-{{$index}}" class="checkbox one pointer">{{item}}</label>   
       </div>
+      <div ng-show="rPoll === 'Other' || rPoll === 'Autre'">
+         <input id="other-poll" type="text" ng-change="pollChange(otherPoll, candidature)" ng-model-options='{ debounce: 500 }'
+         ng-model="otherPoll.item" 
+         placeholder="Veuillez préciser" />
+         <label for="otherpoll">
+            <span class="fr">Autre</span>
+            <span class="en">Other</span>
+         </label>
+      </div>
    </div>
    
 
@@ -57,41 +65,49 @@
       <span class='fr'>Valider</span>
       <span class='en'>Validate</span>
    </a>
-   <div class="" ng-if="validation" >
+   <div class="" ng-show="validation" >
       <p class="text-danger">
         <span class='fr'>Attention : cette validation est définitive. Vous ne pourrez plus modifier vos informations après avoir cliqué.</span>
         <span class='en'>Warning: this confirmation is definitive. You will not be able to make further changes after confirmation.</span>
 
       </p>
       <p>
-        <a class="btn green {{status_class}}" ng-click="final_submission(candidature)">
 
-          <span class='fr'>Je valide définitivement <br>
-            <small>ma candidature au concours
+          <input type="checkbox"
+                  id="final_validation"
+                  ng-model="final_validation"
+                  name="cFinalValidation"
+                  ng-init='final_validation=false'
+                  class="one check"
+                  required
+         />
+      <label for="final_validation" class="one check pointer">
+        <span class="fr">Je valide définitivement ma candidature au concours
                   {{campaign.promotion.starting_year}}
-              <br>du Fresnoy - Studio national
-              <br>et je déclare sur l'honneur que tous les documents 
-              <br>soumis au jury sont réalisés par moi seul·e, 
-              <br>sans aucune aide ou intervention extérieure.
-            </small>
-          </span>
-          <span class='en'>I hereby validate my<br>
-            <small>{{campaign.promotion.starting_year}}
-            application to
-            <br>Le Fresnoy - Studio national</small><br>
-            as definitive <br>
-           <small> and I declare that all the visual documents submitted <br>
-            have been created by me, 
-            <br>without any help or outside sourcing.
-            </small> 
-          </span>
-        </a>
+              du Fresnoy – Studio national et je déclare sur l’honneur que je suis l’auteur·trice de toutes les œuvres présentées dans mon dossier.
+            </span>
+
+        <span class="en">I hereby confirm my application to
+            {{campaign.promotion.starting_year}}
+            Le Fresnoy - Studio national and certify that I am the author of all the works presented in my application.
+        </span>
+      </label>
+
+
+        
       </p>
    </div>
 
 
    <div class="navigation" ng-show="validation">
       <a class="btn prev" ui-sref="candidature.summary" ng-class="" ><span class="fr">Retour</span><span class="en">Back</span></a>
+      <a class="btn next" 
+            ng-click="final_submission(candidature)"  
+            ng-class="{ 'has-error': final_validation != true }">
+            <span class='fr'>Valider</span>
+            <span class='en'>Validate</span>
+
+        </a>
    </div>
 
 </div>

@@ -72,25 +72,57 @@
 
           <!--
             
-         ARTIST NAME
+         PREFERRED / ARTIST NAME
 
           -->
-
-
-         <div class="field">
-            <input id="nickname" type="text"  ng-model="artist.nickname"
-                  ng-model-options='{ debounce: 1000 }'
-                  ng-change="artist.patch({'nickname': artist.nickname})" name="aNickname" />
-            <label for="name">
-
-            <span class="fr">Nom et prénom d’usage, nom d’artiste ou pseudonyme (si différent de l’état civil)</span>
-            <span class="en">Everyday name, artist’s name or pseudonym (if different from your ID)</span>
+         <p class="fr">Si besoin, sélectionnez au choix : </p>
+         <p class="en">If necessary, select one of the options:</p>
+         <input type="radio" id="usage-name" ng-model="alternative_name" ng-value="'usage'"
+               name="alternateName" class="one small check" 
+               ng-click="changeAlternative()" />
+            <label for="usage-name" class="checkbox small one pointer">
+               <span class="fr">Nom et prénom d’usage</span>
+               <span class="en">Everyday name</span>
             </label>
-         </div>
-         <blockquote>
-         <p class="fr">Si vous complétez le champ ci-dessus, c’est ce nom qui sera utilisé dans la communication et les documents pédagogiques tout au long de votre scolarité au Fresnoy.</p>
-         <p class="en">If you fill in the box above, it is this second name which will be used in communications and on teaching documents throughout your time at Le Fresnoy.</p>
-         </blockquote>
+            
+         <input type="radio" id="nick-name" ng-model="alternative_name" ng-value="'nickname'"
+                ng-click="changeAlternative()"
+                 name="alternateName" class="one small check" />
+             <label for="nick-name" class="checkbox small one pointer">
+               <span class="fr">Nom d’artiste</span>
+               <span class="en">Artist’s name</span>
+            </label>
+
+
+            <div ng-show="alternative_name=='usage'">
+               <div class="field">
+                  <input type="text" ng-model="user.profile.preferred_last_name" ng-model-options='{ debounce: 1000 }'
+                  ng-change="user.patch({'profile':{'preferred_last_name': user.profile.preferred_last_name} })" />
+                  <label for="first-name"><span class="fr">Nom d'usage</span><span class="en">Surname</span></label>
+               </div>
+               <div class="field">
+                  <input type="text" ng-model="user.profile.preferred_first_name" ng-model-options='{ debounce: 1000 }'
+                        ng-change="user.patch({'profile':{'preferred_first_name': user.profile.preferred_first_name} })" />
+                  <label for="first-name"><span class="fr">Prénom d'usage</span><span class="en">Name</span></label>
+               </div>
+            </div>
+
+            <div ng-if="alternative_name=='nickname'">
+               <div class="field">
+                  <input type="text" ng-model="artist.nickname" ng-model-options='{ debounce: 1000 }'
+                        ng-change="artist.patch({'nickname': artist.nickname})" 
+                        name="aNickname" />
+                  <label for="aNickname">
+                     <span class="fr">Nom d’artiste</span>
+                     <span class="en">Artist’s name</span>
+                  </label>
+               </div>
+            </div>
+            <blockquote>
+               <p class="fr">Si vous avez complété l’un des champs ci-dessus, c’est ce dernier champ (nom d’usage ou nom d’artiste) qui sera utilisé dans la communication et les documents pédagogiques tout au long de votre scolarité au Fresnoy.</p>
+               <p class="en">If you have filled one of the boxes above (everyday name or artist’s name), it is this name which will be used in communications and on teaching documents throughout your time at Le Fresnoy.</p>
+            </blockquote>
+         
           <!--
             
          GENDER
@@ -179,7 +211,7 @@
                ng-model="user.profile.birthplace_country"
                name="uBirthCountry" required>
                <option value="">-- Select a Country --</option>
-               <option ng-repeat="(country,code) in countries" value="{{code}}">{{country}}</option>
+               <option ng-repeat="(country,code) in countries" value="{{code}}">{{getCountryName(code, "region", language)}}</option>
             </select>
             <div ng-show="form1.uBirthCountry.$touched && form1.uBirthCountry.$invalid" ng-messages="form1.uBirthCountry.$error" class="help-block error">
                <div ng-message="required">
@@ -241,12 +273,13 @@
               name="uSelectNationality"
                ng-model = "nation"
                ng-change="nationality.push(nation); user.profile.nationality = nationality.join(splitChar);
-               user.patch({'profile':{'nationality': user.profile.nationality}}); nation=''"
+               user.patch({'profile':{'nationality': user.profile.nationality} }); nation=''"
                >
                <option value="">----</option>
-               <option ng-repeat="(country, code) in countries" value="{{code}}">{{country}} ({{code}})</option>
+               <option ng-repeat="(country, code) in countries" value="{{code}}">{{getCountryName(code, "region", language)}} ({{code}})</option>
             </select>
-            <div ng-show="form1.uSelectNationality.$touched && form1.uNationality.$invalid" ng-messages="form1.uNationality.$error" class="help-block error">
+            <div ng-show="form1.uSelectNationality.$touched && form1.uNationality.$invalid" ng-messages="form1.uNationality.$error" 
+                 class="help-block error">
                <div ng-message="required">
                   <span class="fr">Obligatoire</span>
                   <span class="en">Required</span>

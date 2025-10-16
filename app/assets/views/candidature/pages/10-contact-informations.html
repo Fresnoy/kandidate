@@ -96,21 +96,7 @@
       PHONE NUMBER 
       -->
       <div class="field">
-         <input
-            id="phone"
-            type="text"
-            placeholder="+33320283982"
-            name="uHomelandPhone"
-            ng-pattern="phone_pattern"
-            ng-model="user.profile.homeland_phone"
-            ng-change="user.patch({'profile':{'homeland_phone': user.profile.homeland_phone}});"
-            ng-minlength="9"
-            ng-maxlength="20" 
-            required
-            hidden
-            />
-
-
+            
         <div class="row">
           <div class="col-xs-3 col-md-3 col-lg-3">
             <input
@@ -137,14 +123,33 @@
                 ng-change="user.profile.homeland_phone = '+' + phone_country + '-' + phone_number"
                 onkeydown = "this.value = this.value.replace(/[^0-9]/g,'');"
                 />
-                
-             <label for="phone">
+
+                <input
+            id="phone"
+            type="text"
+            placeholder="+33320283982"
+            name="uHomelandPhone"
+            ng-pattern="phone_pattern"
+            ng-model="user.profile.homeland_phone"
+            ng-change="user.patch({'profile':{'homeland_phone': user.profile.homeland_phone} });"
+            ng-minlength="9"
+            ng-maxlength="20"
+            class="ng-touched"
+            required
+            hidden
+            />
+          <label for="phone">
                <span class="field-state"></span>
                <span class="fr">Numéro de téléphone <br/>[33 123456789]</span>
                <span class="en">Phone number [33 123456789]</span>
              </label>
+                
           </div>
+          
+          
         </div>
+
+
 
         <div ng-show="user.profile.homeland_phone && form2.uHomelandPhone.$invalid && user.profile.homeland_phone.length>7"
                ng-messages="form2.uHomelandPhone.$error" class="help-block error">

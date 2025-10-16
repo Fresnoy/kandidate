@@ -418,6 +418,18 @@ angular.module('candidature.controllers', ['candidature.services'])
   # countries
   $rootScope.getCountrie = (code) ->
     return _.invert(ISO3166.countryToCode)[code]
+  
+  # native JS function to get country/language name from code
+  $scope.getCountryName = (code, type, locale) ->
+    
+    try
+      regionNames = new (Intl.DisplayNames)([ locale ], type: type)
+      return regionNames.of(code)
+    catch error
+      console.error 'Erreur lors de la récupération du nom du pays:', error
+      return code
+      # Retourne le code en cas d'erreur
+    return
 
 
   # logout
@@ -641,7 +653,7 @@ angular.module('candidature.controllers', ['candidature.services'])
       # clean values
       for item in array
         if(item)
-          arr.push(item.substring(0, item.indexOf("_")))
+          arr.push(item.substring(0, item.lastIndexOf("_")))
       # magic formule
       return arr.filter((item, index) => arr.indexOf(item) != index).length > 0
 
@@ -727,7 +739,7 @@ angular.module('candidature.controllers', ['candidature.services'])
       # emulate error to display as input date
       $scope.form1.uBirthDate.$error = error
       $scope.form1.uBirthDate.$validate()
-
+      
       return transform
 
   $rootScope.loadInfos($rootScope)
@@ -747,6 +759,45 @@ angular.module('candidature.controllers', ['candidature.services'])
     if(newValue)
       $scope.birthdateMin = $filter('date')(new Date($rootScope.campaign.date_of_birth_max), 'yyyy-MM-dd')
   )
+
+  # preferred name
+  $scope.$watchGroup(["artist.nickname", "user.profile.preferred_first_name", "user.profile.preferred_last_name"], (newValues, oldValues) ->
+        newValue = newValues[0] || newValues[1] || newValues[2]
+        if(newValue)
+          $scope.alternative_name = ''
+          if ($scope.artist.nickname && $scope.artist.nickname.length>0)
+            $scope.alternative_name = 'nickname'
+        
+          if ($scope.user.profile.preferred_first_name != "" || $scope.user.profile.preferred_last_name != "")
+            $scope.alternative_name = 'usage'
+            console.log("usage")
+          
+          $scope.alternative_name_old = $scope.alternative_name
+  )
+  
+  $scope.changeAlternative = () ->
+    current = $scope.alternative_name
+
+    # toggle off: clear both artist nickname and preferred names
+    if current == $scope.alternative_name_old
+      $scope.alternative_name = $scope.alternative_name_old = ""
+      $scope.artist.nickname = $scope.user.profile.preferred_first_name = $scope.user.profile.preferred_last_name = ""
+      $scope.artist.patch({nickname: ""})
+      $scope.user.patch(profile: {preferred_first_name: "", preferred_last_name: ""})
+      return
+
+    # switching to usage: remove artist nickname
+    if current == "usage"
+      $scope.artist.nickname = ""
+      $scope.artist.patch({nickname: ""})
+
+    # switching to nickname: remove preferred names
+    if current == "nickname"
+      $scope.user.profile.preferred_first_name = ""
+      $scope.user.profile.preferred_last_name = ""
+      $scope.user.patch(profile: {preferred_first_name: "", preferred_last_name: ""})
+
+    $scope.alternative_name_old = current
 
   # Gender
   $scope.gender =
@@ -880,6 +931,10 @@ angular.module('candidature.controllers', ['candidature.services'])
 
       $scope.french_art_cursus = ""
       $scope.justificatif_placeholders = {en:"Document title",fr:"Titre du justificatif"}
+
+      $scope.updateCategory = (d) ->
+           console.log(d);
+      
  
       #patch Medium
       $scope.uploadFile = (data, model) ->
@@ -1037,22 +1092,24 @@ angular.module('candidature.controllers', ['candidature.services'])
 
         # POLL
         $scope.rPoll = ""
+        $scope.otherPoll = {item: ""}
         pollRegexp = /(\[POLL\])(.*)(\[\/POLL\])/gi
         $scope.pollChange = (obj, candidature) ->
             remark = candidature.remark
             new_remark = ""
             exist = pollRegexp.test(remark)
+            text = obj.item
             # if exist
             # change de content
             if(exist)
-              new_remark = remark.replace(pollRegexp, "$1"+obj.item+"$3")
+              new_remark = remark.replace(pollRegexp, "$1"+text+"$3")
             # else create it
             else 
               new_remark = if candidature.remark then candidature.remark else ""              
               # # make some lines              
-              # make some lin             
+              # make some lines
               new_remark +="\n\n"
-              new_remark +="[POLL]"+obj.item+"[/POLL]"
+              new_remark +="[POLL]"+text+"[/POLL]"
             # set remark
             candidature.remark = new_remark
             candidature.patch({remark: candidature.remark})
@@ -1065,7 +1122,14 @@ angular.module('candidature.controllers', ['candidature.services'])
             if(match)
               # split [POLL]value[/POLL] to ke
               split = match[0].split(/(\[|\])/)
-              $scope.rPoll = split[4] 
+              value = split[4]
+              # test if rpoll is in list
+              exist = false
+              if( !$rootScope.candidature_config.communication.poll['fr'].items.includes(value) && !$rootScope.candidature_config.communication.poll['en'].items.includes(value))
+                $scope.rPoll = if $scope.language == 'fr' then "Autre" else "Other"
+                $scope.otherPoll.item = value
+              else
+                $scope.rPoll = value
               
         )
             
