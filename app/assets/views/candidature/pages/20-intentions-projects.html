@@ -107,7 +107,7 @@
       </div>
       <div class="item" ng-if="candidature.considered_project_1" ng-init='RC_prj1=false'>
          <a class="link" target='_blank' href="{{candidature.considered_project_1}}"><img  /></a>
-         <span class="name">{{candidature.considered_project_1.split('.').pop()}}</span>
+         <span class="name">{{candidature.considered_project_1.split('/').pop()}}</span>
          <span class="trash" ng-click="RC_prj1=true" />
          <div class="delete-pane" ng-show="RC_prj1">
             <span class="trash"
