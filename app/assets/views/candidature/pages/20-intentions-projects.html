@@ -107,7 +107,7 @@
       </div>
       <div class="item" ng-if="candidature.considered_project_1" ng-init='RC_prj1=false'>
          <a class="link" target='_blank' href="{{candidature.considered_project_1}}"><img  /></a>
-         <span class="name">{{candidature.considered_project_1.split('/').pop()}}</span>
+         <span class="name small">{{candidature.considered_project_1.split('/').pop()}}</span>
          <span class="trash" ng-click="RC_prj1=true" />
          <div class="delete-pane" ng-show="RC_prj1">
             <span class="trash"
@@ -161,7 +161,7 @@
      <input name="cRefProject1" ng-model="candidature.artistic_referencies_project_1" hidden required />
      <div class="item" ng-if="candidature.artistic_referencies_project_1" ng-init='RC_ref_prj1=false'>
         <a class="link" target='_blank' href="{{candidature.artistic_referencies_project_1}}"><img  /></a>
-        <span class="name">{{candidature.artistic_referencies_project_1.split('.').pop()}}</span>
+        <span class="name small">{{candidature.artistic_referencies_project_1.split('/').pop()}}</span>
         <span class="trash" ng-click="RC_ref_prj1=true" />
         <div class="delete-pane" ng-show="RC_ref_prj1">
            <span class="trash" 
@@ -222,7 +222,7 @@
        </div>
        <div class="item" ng-if="candidature.considered_project_2" ng-init='RC_prj2=false'>
           <a class="link" target='_blank' href="{{candidature.considered_project_2}}"><img  /></a>
-          <span class="name">{{candidature.considered_project_2.split('.').pop()}}</span>
+          <span class="name small">{{candidature.considered_project_2.split('/').pop()}}</span>
           <span class="trash" ng-click="RC_prj2=true" />
           <div class="delete-pane" ng-show="RC_prj2">
              <span class="trash" 
@@ -275,7 +275,7 @@
       </div>
       <div class="item" ng-if="candidature.artistic_referencies_project_2" ng-init='RC_ref_prj2=false'>
          <a class="link" target='_blank' href="{{candidature.artistic_referencies_project_2}}"><img  /></a>
-         <span class="name">{{candidature.artistic_referencies_project_2.split('.').pop()}}</span>
+         <span class="name small">{{candidature.artistic_referencies_project_2.split('/').pop()}}</span>
          <span class="trash" ng-click="RC_ref_prj1=true" />
          <div class="delete-pane" ng-show="RC_ref_prj1">
             <span class="trash" 
