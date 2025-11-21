@@ -51,7 +51,8 @@
                        ng-model-options='{ debounce: 1000 }'
                        name="cBinomeWith"
                        placeholder = ""
-                       list="app_users"
+                       onkeyup="if(this.value.length>=1)this.setAttribute('list','app_users');else this.removeAttribute('list');"
+                       list=""
                        required
                        />
                        <datalist id="app_users">
