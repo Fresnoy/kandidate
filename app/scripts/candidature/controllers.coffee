@@ -142,8 +142,7 @@ angular.module('candidature.controllers', ['candidature.services'])
     $rootScope.current_display_screen = candidature_config.screen.account_login
 
     $scope.vm =
-      username:""
-      user_or_email:""
+      login:""
       password:""
 
     if($scope.isAuthenticated)
@@ -151,11 +150,9 @@ angular.module('candidature.controllers', ['candidature.services'])
       $state.go("candidature.options")
 
     $scope.searchUserName = (form, str) ->
-      $scope.vm.username = "";
       form.uNameOrEmail.$setValidity('unknown', false)
       Users.getList({search: str}).then((data) ->
           if(data.length == 1)
-            $scope.vm.username = data[0].username
             form.uNameOrEmail.$setValidity('unknown', true)
           if(data.length > 1)
             form.uNameOrEmail.$setValidity('toomany', true)

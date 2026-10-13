@@ -6,13 +6,10 @@
    <p class="fr">Pour commencer ou poursuivre le processus d'inscription, veuillez compléter les champs <br/>ci-dessous :</p>
    <p class="en">To start or resume your application procedure, please login.<br/>
       If you do not have an account, go to <a ui-sref="candidature.account.create-user">the sign up page</a></p>
-      <form name="form" ng-submit="login(form, vm)" novalidate>
-         <div class="field hidden">
-            <input class="" id="username_hide" type="text" ng-model="vm.username" />
-         </div>
+      <form name="form" ng-submit="login(form, vm)" novalidate>         
          <div class="field">
-            <input id="username_or_email" type="text" ng-model="vm.user_or_email" 
-                   ng-change="searchUserName(form, vm.user_or_email)" 
+            <input id="username_or_email" type="text" ng-model="vm.login" required
+                   ng-change="searchUserName(form, vm.login)" 
                    ng-model-options='{ debounce: 500 }'
                    name="uNameOrEmail" />
             <div ng-show="form.uNameOrEmail.$touched && Object.keys(form.uNameOrEmail.$error).length" ng-messages="form.uNameOrEmail.$error" class="help-block error">
