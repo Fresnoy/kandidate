@@ -1,11 +1,21 @@
 <div class="navigation breadcrumb " ng-show="isAuthenticated && !upload_percentage<99">
   <ul class="list-inline small">
+    <!-- PROGRAMM -->
+    <li ng-class="{'current': candidature_config.screen[step.current].page.group == 'options'}">
+      <a class="pointer" ui-sref="candidature.options">
+        <div class="loading" ng-class="{'completed' : progress_options == 100}"><span class="bar" ng-style="{'width' : getProgression('options')+'%'}" /></div>
+        <span class="icon icon-course " ng-class="{'active': candidature_config.screen[step.current].page.group =='options'}"></span>
+        <div class="name"><span class="fr">Filière</span><span class="en">Course</span></div>
+      </a>
+    </li>
+    <!-- ADMIN INFOS -->
     <li ng-class="{'current': candidature_config.screen[step.current].page.group == 'administrative-informations'}">
       <a class="pointer" ui-sref="candidature.administrative-informations">
       <div class="loading" ng-class="{'completed' : progress_admin == 100}"><span class="bar" ng-style="{'width' : getProgression('administrative-informations')+'%'}" /></div>
       <span class="icon icon-idcard" ng-class="{'active': candidature_config.screen[step.current].page.group =='administrative-informations'}"></span>
       <div class="name"><span class="fr">Etat civil</span><span class="en">Personal info</span></div>
     </a></li>
+    <!-- CV -->
     <li ng-class="{'current': candidature_config.screen[step.current].page.group == 'curiculum'}">
       <a class="pointer" ui-sref="candidature.curiculum">
       <div class="loading" ng-class="{'completed' : progress_curiculum == 100}">
@@ -13,6 +23,7 @@
       <span class="icon icon-graduation" ng-class="{'active': candidature_config.screen[step.current].page.group =='curiculum'}"></span>
       <div class="name"><span class="fr">Cursus</span><span class="en">Cursus</span></div>
     </a></li>
+    <!-- PORTFOLIO -->
     <li ng-class="{'current': candidature_config.screen[step.current].page.group =='portfolio'}">
       <a class="pointer" ui-sref="candidature.artistic-background">
       <div class="loading" ng-class="{'completed' : progress_portfolio == 100}">
@@ -20,6 +31,7 @@
       <span class="icon icon-folder" ng-class="{'active': candidature_config.screen[step.current].page.group =='portfolio'}" ></span>
       <div class="name"><span class="fr">Portfolio</span><span class="en">Portfolio</span></div>
     </a></li>
+    <!-- INTENTIONS -->
     <li ng-class="{'current': candidature_config.screen[step.current].page.group =='intentions'}">
       <a class="pointer" ui-sref="candidature.previous-applications">
       <div class="loading" ng-class="{'completed' : progress_intentions == 100}" >
@@ -27,6 +39,7 @@
       <span class="icon icon-arrows" ng-class="{'active': candidature_config.screen[step.current].page.group =='intentions'}"></span>
       <div class="name"><span class="fr">Intentions</span><span class="en">Intentions</span></div>
     </a></li>
+    <!-- SUMMARY -->
     <li ng-class="{'current': candidature_config.screen[step.current].page.group =='summary'}">
       <a class="pointer" ui-sref="candidature.summary">
       <span class="icon icon-check" ng-class="{'active': candidature_config.screen[step.current].page.group =='summary'}"></span>

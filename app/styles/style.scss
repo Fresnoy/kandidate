@@ -29,12 +29,24 @@ $flag-icon-css-path: '../images/flags' !default;
   font-size: 1.5em;
 }
 
+.italic{
+  font-style: italic;
+  font-weight: normal;
+  font-family: inherit;
+}
+
 .icon{
   background-position: center center;
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
   display:inline-block;
+  &.icon-course{
+    background-image: url(../images/candidature/icons/course_light.svg);
+    &.active, &:hover{
+      background-image: url(../images/candidature/icons/course_dark.svg);
+    }
+  }
   &.icon-idcard{
     background-image: url(../images/candidature/icons/ID_light.svg);
     &.active, &:hover{
@@ -338,7 +350,7 @@ body {
       padding: 30px;
       background: #d8d8d8;
       min-height: 100vh;
-      height: 100%;
+      // height: 100%;
       z-index: 100;
       .close{
         background: url(../images/candidature/icons/cancel.svg) no-repeat center center;
@@ -414,7 +426,9 @@ body {
             vertical-align: top;
             text-align: left;
             display:inline-block;
-            &.big{}
+            &.big{
+            font-size: 1em;
+            }
           }
         }
         &.check{
@@ -704,7 +718,7 @@ body {
           margin-bottom: 40px;
         }
         li{
-          width: 18%;
+          width: 15%;
           position: relative;
           padding: 0px 0px;
           &:hover, &.current {
