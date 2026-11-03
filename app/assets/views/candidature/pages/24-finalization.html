@@ -84,11 +84,19 @@
       <label for="final_validation" class="one check pointer">
         <span class="fr">Je valide définitivement ma candidature au concours
                   {{campaign.promotion.starting_year}}
+                  au sein de la filière
+                  <span ng-if="candidature.requested_program == 'hybrid'" class="italic"> Formes hybrides et technologies émergentes</span>
+                  <span ng-if="candidature.requested_program == 'cinema'" class="italic"> Nouvelles écritures cinématographiques</span>
+                  
               du Fresnoy – Studio national et je déclare sur l’honneur que je suis l’auteur·trice de toutes les œuvres présentées dans mon dossier.
             </span>
 
-        <span class="en">I hereby confirm my application to
-            {{campaign.promotion.starting_year}}
+        <span class="en">I hereby confirm my application 
+         for the {{campaign.promotion.starting_year}}
+             intake on the 
+            <span ng-if="candidature.requested_program == 'hybrid'" class="italic"> Specialisation in Hybrid Forms and Emerging Technologies</span>
+            <span ng-if="candidature.requested_program == 'cinema'" class="italic"> Specialisation in New Forms of Cinematic Narrative</span>
+            course at            
             Le Fresnoy - Studio national and certify that I am the author of all the works presented in my application.
         </span>
       </label>

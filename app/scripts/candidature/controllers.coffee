@@ -181,6 +181,15 @@ angular.module('candidature.controllers', ['candidature.services'])
       if(!$scope.isAuthenticated || !$rootScope.candidature || !$rootScope.user.profile)
         return false
 
+      if(type == "options")
+        ar = [$rootScope.candidature.requested_program]
+        total = ar.length
+        progress = 0
+        for item in ar
+          if(item)
+            progress++
+        return $scope.progress_options = progress/total*100
+
       if(type == "administrative-informations")
         ar = [$rootScope.user.last_name, $rootScope.user.first_name,
           $rootScope.user.profile.gender, $rootScope.user.profile.birthdate,
@@ -676,7 +685,8 @@ angular.module('candidature.controllers', ['candidature.services'])
       user_id = jwtHelper.decodeToken(localStorage.getItem('token')).user_id
       Users.one(user_id).get().then((user) ->
         $rootScope.user = user
-        candidature_is_started = user.profile.birthdate and user.profile.gender and user.profile.nationality
+        # candidature_is_started = user.profile.birthdate and user.profile.gender and user.profile.nationality
+        candidature_is_started = false
         if user.profile.is_artist and candidature_is_started
           $state.go("candidature.summary")
         else

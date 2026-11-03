@@ -7,6 +7,9 @@
 
 
   <form name="form" ng-submit="form.$valid && submit()" class="css-form" novalidate>
+    <a class="pointer" ui-sref="candidature.options">
+      <div class="field"><label><span class="fr">Filière</span><span class="en">Course</span></label>  <input class="hidden" type="text" ng-model="candidature.requested_program" readonly required/><span class="isvalid"/></div>
+    </a>
 
     <h2><span class="fr">Informations administratives</span><span class="en">Administrative information</span></h2>
     <div class="row">
@@ -134,26 +137,17 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-md-6 col-lg-6">
-        <h3><br/><span class="fr"><strong>PROJET PREMIÈRE ANNÉE</strong></span><span class="en"><strong>FIRST YEAR PROJECT</strong></h3>
+      <div class="col-xs-12 col-md-12 col-lg-12">
+        <h3><br/><span class="fr"><strong>PROJET </strong></span><span class="en"><strong>PROJECT</strong></h3>
         <a class="pointer" ui-sref="candidature.intentions-projects">
           <div class="field"><label><span class="fr">Description</span><span class="en">Description</span></label> <input class="hidden" type="text" ng-model="candidature.considered_project_1" readonly required/><span class="isvalid" /></div>
           <div class="field"><label><span class="fr">Références artistiques</span><span class="en">Art references</span></label> <input class="hidden" type="text" ng-model="candidature.artistic_referencies_project_1" readonly required/><span class="isvalid" /></div>
         </a>
       </div>
-      <div class="col-xs-12 col-md-6 col-lg-6">
-        <h3><br/><span class="fr"><strong>PROJET DEUXIÈME ANNÉE</strong></span><span class="en"><strong>SECOND YEAR PROJECT</strong></span></h3>
-        <a class="pointer" ui-sref="candidature.intentions-projects">
-          <div class="field"><label><span class="fr">Description</span><span class="en">Description</span></label> <input class="hidden" type="text" ng-model="candidature.considered_project_2" readonly required/><span class="isvalid" /></div>
-          <div class="field"><label><span class="fr">Références artistiques</span><span class="en"> Art references</span></label> <input class="hidden" type="text" ng-model="candidature.artistic_referencies_project_2" readonly required/><span class="isvalid" /></div>
-        </a>
-      </div>
+      
     </div>
     <a class="pointer" ui-sref="candidature.intentions-projects">
-      <div ng-if="findDuplicatesValues([candidature.considered_project_1, 
-        candidature.considered_project_2, 
-        candidature.artistic_referencies_project_1, 
-        candidature.artistic_referencies_project_2])"; class="field">
+      <div ng-if="findDuplicatesValues([candidature.considered_project_1, candidature.artistic_referencies_project_1])"; class="field">
           <label><p class="fr">Il semble que vous ayez chargé deux documents identiques.</p><p class="en">You seem to have uploaded two identical documents</p></label>
           <input class="hidden" type="text" ng-model="INVALIDMODEL" readonly required /><span class="isvalid" />
         </div>

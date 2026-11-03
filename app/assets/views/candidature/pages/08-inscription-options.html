@@ -1,12 +1,113 @@
+<div class="help-pane" ng-show='display_help' ng-init="show_help(false);">
+   <span class="close" ng-click="show_help(false)">x</span>
+   <h1><class class="fr">Informations</class><class class="en">Informations</class></h1>
+   <div class="fr">
+      <p><strong class="big">Filière Formes hybrides et technologies émergentes </strong></p>
+
+      <p>Cette filière propose aux étudiant·es un terrain d’expérimentation en encourageant la porosité et l’hybridation artistiques et techniques. 
+        Elle se veut un laboratoire de recherche artistique, où la création dialogue directement avec les technologies. Elle offre un cadre de création 
+        d’œuvres destinées aux espaces d’exposition, pour aborder les imaginaires, les langages, les écritures, les supports et les outils nouveaux de la création contemporaine. 
+        Elle invite à croiser les disciplines, les techniques et les supports pour créer des œuvres hybrides, selon la nature de ce qu’elles font dialoguer : 
+        médiums traditionnels ou numériques, anciens ou émergents, temporalités, espaces, régimes d’existence.
+      <br/><u>Formats</u> : <br/>
+      Destinées à une diffusion dans des espaces d'exposition ou de performance, ces œuvres peuvent prendre des formes multiples et non étanches : installations vidéographiques et photographiques, images numériques et animation mises en espace, installations sonores, œuvres transmédia, œuvres génératives, algorithmiques, collaboratives avec l’IA, œuvres immersives et environnementales, performances, etc. </p>
+      <p><strong class="big">Filière Nouvelles écritures cinématographiques </strong></p>
+      <p>Cette filière envisage le cinéma comme art et comme expérience, libéré de l’industrie et du scénario comme fin en soi. 
+        Les écritures dont il est question ne s’entendent pas uniquement au sens narratif, bien que la question des nouveaux récits, 
+        soit centrale dans un monde en transformation. Cette filière propose aux étudiant·es 
+        un cadre dans lequel l’accent est mis aussi bien sur l’écriture au sens large que sur ce qui détermine la singularité de l’œuvre : ses aspects visuels et sonores. 
+      <br/>La notion de genre (fiction, documentaire, essai…) n’est pas interrogée dans un premier temps, afin de laisser toutes ses chances à la porosité formelle.
+      <br/>Intrinsèquement créative, cette filière permet d’explorer le futur d’un art cinématographique en mutation.
+      <br/><u>Formats </u> : <br/>
+      Ces œuvres prendront la forme de courts-métrages destinés à être diffusés dans des cinémas, festivals de films ou salles de projection. Les films pourront s'appuyer sur l'ensemble des technologies disponibles (analogiques, numériques) et intégrer prises de vues réelles, animation, images de synthèse, montages d'archives et found footage. Il n'est pas demandé de s'inscrire dans un genre spécifique. L'expérimentation et l'inventivité formelle et conceptuelle sont encouragées. </p>
+
+   </div>
+   <div class="en">
+      <p><strong class="big">Hybrid Forms and Emerging Technologies Programme </strong></p>
+
+      <p>This programme offers students a space for experimentation by encouraging the blurring of boundaries and the fusion of artistic and technical disciplines.
+        It is intended as an artistic research laboratory, where creation engages directly with technology. It provides a framework for creating
+        works intended for exhibition spaces, exploring the imaginations, languages, styles, media and new tools of contemporary creation.
+        It encourages the blending of disciplines, techniques and media to create hybrid works, depending on the nature of what they bring into dialogue:
+        traditional or digital media, established or emerging, temporalities, spaces and modes of existence.
+      <br/><u>Formats</u> : <br/>
+      Intended for presentation in exhibition or performance spaces, these works can take on multiple, fluid forms: video and photographic installations, digital images and animations presented in space, sound installations, transmedia works, generative and algorithmic works, collaborative works with AI, immersive and environmental works, performances, etc. </p>
+      <p><strong class="big">Specialisation in New Cinematic Forms of Expression </strong></p>
+      <p>This specialisation approaches cinema as both an art form and an experience, liberated from the constraints of the film industry and the screenplay as an end in itself.
+        The forms of expression under consideration are not limited to the narrative sense, although the question of new narratives
+        is central in a changing world. This specialisation offers students
+        a framework in which the emphasis is placed both on writing in the broadest sense and on what determines the uniqueness of the work: its visual and auditory aspects.
+      <br/>The notion of genre (fiction, documentary, essay, etc.) is not questioned initially, in order to give formal porosity every opportunity to flourish.
+      <br/>Intrinsically creative, this programme allows students to explore the future of a cinematic art form undergoing transformation.
+      <br/><u>Formats </u>: <br/>
+      These works will take the form of short films intended for screening in cinemas, at film festivals or in screening venues. Films may utilise all available technologies (analogue, digital) and incorporate live-action footage, animation, computer-generated imagery, archive footage and found footage. There is no requirement to adhere to a specific genre. Experimentation and formal and conceptual inventiveness are encouraged. </p>
+   </div>
+</div>
+
+
+
+
+
+
+
 <div class="option">
   <h1>
-    <span class="fr">Inscription</span>
-    <span class="en">Registration</span>
+    <span class="fr">Filière</span>
+    <span class="en">Course</span>
   </h1>
 
 
   <div class="">
-      <div class="fr">
+      <div class="">
+        <p class="fr">Le Fresnoy accompagne ses étudiants en proposant deux filières sur une période de 18 mois 
+          (octobre {{campaign.promotion.starting_year}}-Mars {{ campaign.promotion.ending_year }} ). <br/>
+           Ce choix est définitif et aucun changement de filière ne pourra être envisagé. Le Fresnoy sélectionne un nombre identique d’étudiant.es par filière.
+        </p>
+        <p class="en">Le Fresnoy supports its students by offering two courses over an 18-month period
+          (October {{campaign.promotion.starting_year}}–March {{campaign.promotion.ending_year}}). <br/>
+           This choice is final and no change of programme will be permitted. Le Fresnoy selects the same number of students for each programme.
+        </p>
+        <h2 class="fr">Sélection de la filière 
+          <a class="small pointer" ng-click="show_help(true)">(voir plus d'information sur les filières)</a></h2>
+        <h2 class="en">Choosing a course
+          <a class="small pointer" ng-click="show_help(true)">(see more information)</a></h2>
+
+        
+        <form name="form" ng-submit="form.$valid && submit()" class="css-form">
+
+          <div style="display:flex; flex-direction: row;">
+            <input type="radio"
+                id="program-hybrid"
+                ng-model="candidature.requested_program"
+                ng-change="candidature.patch({requested_program: candidature.requested_program})"
+                name="cProgram"
+                ng-value="'hybrid'"
+                class="one check"
+                />
+            <label for="program-hybrid" class="checkbox one big pointer">
+              <span class="fr">Filière Formes hybrides et technologies émergentes</span>
+              <span class="en">Specialisation in Hybrid Forms and Emerging Technologies</span>         
+            </label>
+            
+
+            <input type="radio"
+                id="program-cinema"
+                ng-model="candidature.requested_program"
+                ng-change="candidature.patch({requested_program: candidature.requested_program})"
+                name="cProgram"
+                ng-value="'cinema'"
+                class="one check "
+                />
+            <label for="program-cinema" class="checkbox one big pointer">
+              <span class="fr">Filière Nouvelles écritures cinématographiques</span>
+              <span class="en">Specialisation in New Forms of Cinematic Narrative</span>         
+            </label>
+          </div>
+        </form>
+        
+        
+
+        <!--
         <h2>Dans les prochaines pages, les documents suivants (au format numérique) vous seront demandés : </h2>
         <ul>
           <li>Justificatif d'identité (numérisation du passeport ou de la carte d'identité),</li>
@@ -42,13 +143,17 @@
           <li>A video presenting your works.</li>
         </ul>
 
+      
+
 
         <h2>AutoSave</h2>
         <p>During the application form completion, informations are automatically saved as you type them.</p>
         <p>For further information, <a class="pointer" ui-sref="candidature.user-guide">see help</a></p>
       </div>
 
-      <div class="bg-grey">
+      
+
+      <div class="bg-grey small" style="margin-top: 20px;">
       <p class="fr">
         Les informations recueillies sur ce formulaire sont enregistrées dans un fichier informatisé par
         Le Fresnoy - Studio national pour la sélection des candidat·es.<br/>
@@ -67,12 +172,12 @@
         , you have the right to access your personal data and have it corrected by contacting the IT service at:
         <a href="mailto:rgpd@lefresnoy.net">rgpd@lefresnoy.net</a>.
       </p>
-
+      -->
 
 
      </div>
       <div class="navigation">
-         <a class="btn next" ui-sref="candidature.administrative-informations">
+         <a ng-class="{'disabled': candidature.requested_program==''}" class="btn next" ui-sref="candidature.administrative-informations">
            <span class="fr">Continuer</span><span class="en">Continue</span>
          </a>
       </div>
